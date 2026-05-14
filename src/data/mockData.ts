@@ -1,0 +1,218 @@
+import type {
+  Property, Contract, RentRow, Expense, DocRecord,
+  InboxItem, Development, Valuation,
+} from '../types'
+
+export const mockProperties: Property[] = [
+  {
+    id: 'p1',
+    address: 'Keizersgracht 274',
+    city: 'Amsterdam',
+    postcode: '1016 EV',
+    purchasePrice: 820000,
+    purchaseDate: '2019-03-15',
+    wozValue: 910000,
+    mortgageBank: 'ABN AMRO',
+    status: 'active',
+    lastRenovationDate: '2022-06-01',
+    notes: 'Canal house, 3 units. Good condition overall.',
+    units: [
+      { id: 'u1', propertyId: 'p1', name: 'Ground Floor', tenant: 'Jan de Vries', monthlyRent: 1450, status: 'rented', contractEndDate: '2027-03-01', nextRentIncreaseDate: '2026-07-01' },
+      { id: 'u2', propertyId: 'p1', name: 'First Floor', tenant: 'Maria Santos', monthlyRent: 1350, status: 'rented', contractEndDate: '2026-09-15', nextRentIncreaseDate: '2026-07-01' },
+      { id: 'u3', propertyId: 'p1', name: 'Second Floor', tenant: '', monthlyRent: 0, status: 'renovating', contractEndDate: '', nextRentIncreaseDate: '' },
+    ],
+  },
+  {
+    id: 'p2',
+    address: 'Witte de Withstraat 58',
+    city: 'Rotterdam',
+    postcode: '3012 BR',
+    purchasePrice: 385000,
+    purchaseDate: '2020-07-22',
+    wozValue: 420000,
+    mortgageBank: 'ING',
+    status: 'active',
+    lastRenovationDate: '2024-01-10',
+    notes: 'Single commercial unit, street level.',
+    units: [
+      { id: 'u4', propertyId: 'p2', name: 'Main Unit', tenant: 'Café de Witte', monthlyRent: 2200, status: 'rented', contractEndDate: '2028-07-01', nextRentIncreaseDate: '2026-08-01' },
+    ],
+  },
+  {
+    id: 'p3',
+    address: 'Oudegracht 112',
+    city: 'Utrecht',
+    postcode: '3511 AW',
+    purchasePrice: 640000,
+    purchaseDate: '2018-11-01',
+    wozValue: 750000,
+    mortgageBank: 'Rabobank',
+    status: 'active',
+    lastRenovationDate: '2023-09-20',
+    notes: 'Two residential apartments above retail.',
+    units: [
+      { id: 'u5', propertyId: 'p3', name: 'Apartment A', tenant: 'Sophie Bakker', monthlyRent: 1200, status: 'rented', contractEndDate: '2026-06-30', nextRentIncreaseDate: '2026-07-01' },
+      { id: 'u6', propertyId: 'p3', name: 'Apartment B', tenant: 'Ahmed El Amrani', monthlyRent: 1100, status: 'rented', contractEndDate: '2027-01-01', nextRentIncreaseDate: '2026-07-01' },
+    ],
+  },
+  {
+    id: 'p4',
+    address: 'Grote Markt 5',
+    city: 'Groningen',
+    postcode: '9712 HS',
+    purchasePrice: 290000,
+    purchaseDate: '2021-02-14',
+    wozValue: 315000,
+    mortgageBank: 'ABN AMRO',
+    status: 'active',
+    lastRenovationDate: '',
+    notes: 'Studio apartment, student area.',
+    units: [
+      { id: 'u7', propertyId: 'p4', name: 'Studio', tenant: 'Lisa Jansen', monthlyRent: 850, status: 'rented', contractEndDate: '2026-08-31', nextRentIncreaseDate: '2026-09-01' },
+    ],
+  },
+  {
+    id: 'p5',
+    address: 'Stationsweg 23',
+    city: 'Den Haag',
+    postcode: '2515 BM',
+    purchasePrice: 520000,
+    purchaseDate: '2017-06-10',
+    wozValue: 610000,
+    mortgageBank: 'ING',
+    status: 'active',
+    lastRenovationDate: '2025-02-15',
+    notes: 'Recently renovated. 2 apartments.',
+    units: [
+      { id: 'u8', propertyId: 'p5', name: 'Unit 1', tenant: 'Peter van Dijk', monthlyRent: 1350, status: 'rented', contractEndDate: '2027-06-01', nextRentIncreaseDate: '2026-07-01' },
+      { id: 'u9', propertyId: 'p5', name: 'Unit 2', tenant: '', monthlyRent: 0, status: 'empty', contractEndDate: '', nextRentIncreaseDate: '' },
+    ],
+  },
+  {
+    id: 'p6',
+    address: 'Markt 18',
+    city: 'Eindhoven',
+    postcode: '5611 EB',
+    purchasePrice: 345000,
+    purchaseDate: '2022-01-20',
+    wozValue: 370000,
+    mortgageBank: 'Rabobank',
+    status: 'active',
+    lastRenovationDate: '',
+    notes: 'Single family home. Long term tenant.',
+    units: [
+      { id: 'u10', propertyId: 'p6', name: 'House', tenant: 'Familie Hendriks', monthlyRent: 1500, status: 'rented', contractEndDate: '2029-01-01', nextRentIncreaseDate: '2027-01-01' },
+    ],
+  },
+  {
+    id: 'p7',
+    address: 'Voorstraat 45',
+    city: 'Dordrecht',
+    postcode: '3311 EL',
+    purchasePrice: 275000,
+    purchaseDate: '2023-05-05',
+    wozValue: 290000,
+    mortgageBank: 'ING',
+    status: 'active',
+    lastRenovationDate: '2023-06-15',
+    notes: 'Compact 2-unit building near center.',
+    units: [
+      { id: 'u11', propertyId: 'p7', name: 'Apt A', tenant: 'Eva Smit', monthlyRent: 950, status: 'rented', contractEndDate: '2026-12-01', nextRentIncreaseDate: '2026-07-01' },
+      { id: 'u12', propertyId: 'p7', name: 'Apt B', tenant: 'Tom Mulder', monthlyRent: 900, status: 'rented', contractEndDate: '2026-11-01', nextRentIncreaseDate: '2026-07-01' },
+    ],
+  },
+  {
+    id: 'p8',
+    address: 'Brink 9',
+    city: 'Deventer',
+    postcode: '7411 BV',
+    purchasePrice: 195000,
+    purchaseDate: '2024-09-01',
+    wozValue: 205000,
+    mortgageBank: 'ABN AMRO',
+    status: 'active',
+    lastRenovationDate: '',
+    notes: 'New acquisition. Needs kitchen renovation.',
+    units: [
+      { id: 'u13', propertyId: 'p8', name: 'Main', tenant: '', monthlyRent: 0, status: 'unavailable', contractEndDate: '', nextRentIncreaseDate: '' },
+    ],
+  },
+]
+
+export const mockContracts: Contract[] = [
+  { id: 'c1', propertyId: 'p1', unitId: 'u1', tenant: 'Jan de Vries', startDate: '2022-03-01', endDate: '2027-03-01', monthlyRent: 1450, rentDueDay: 1, depositAmount: 2900, noticePeriod: '2 months', nextRentIncreaseDate: '2026-07-01', status: 'active' },
+  { id: 'c2', propertyId: 'p1', unitId: 'u2', tenant: 'Maria Santos', startDate: '2021-09-15', endDate: '2026-09-15', monthlyRent: 1350, rentDueDay: 1, depositAmount: 2700, noticePeriod: '2 months', nextRentIncreaseDate: '2026-07-01', status: 'active' },
+  { id: 'c3', propertyId: 'p2', unitId: 'u4', tenant: 'Café de Witte', startDate: '2020-08-01', endDate: '2028-07-01', monthlyRent: 2200, rentDueDay: 1, depositAmount: 6600, noticePeriod: '3 months', nextRentIncreaseDate: '2026-08-01', status: 'active' },
+  { id: 'c4', propertyId: 'p3', unitId: 'u5', tenant: 'Sophie Bakker', startDate: '2023-07-01', endDate: '2026-06-30', monthlyRent: 1200, rentDueDay: 1, depositAmount: 2400, noticePeriod: '1 month', nextRentIncreaseDate: '2026-07-01', status: 'active' },
+  { id: 'c5', propertyId: 'p3', unitId: 'u6', tenant: 'Ahmed El Amrani', startDate: '2024-01-01', endDate: '2027-01-01', monthlyRent: 1100, rentDueDay: 1, depositAmount: 2200, noticePeriod: '1 month', nextRentIncreaseDate: '2026-07-01', status: 'active' },
+  { id: 'c6', propertyId: 'p4', unitId: 'u7', tenant: 'Lisa Jansen', startDate: '2023-09-01', endDate: '2026-08-31', monthlyRent: 850, rentDueDay: 1, depositAmount: 1700, noticePeriod: '1 month', nextRentIncreaseDate: '2026-09-01', status: 'active' },
+  { id: 'c7', propertyId: 'p5', unitId: 'u8', tenant: 'Peter van Dijk', startDate: '2025-06-01', endDate: '2027-06-01', monthlyRent: 1350, rentDueDay: 1, depositAmount: 2700, noticePeriod: '2 months', nextRentIncreaseDate: '2026-07-01', status: 'active' },
+  { id: 'c8', propertyId: 'p6', unitId: 'u10', tenant: 'Familie Hendriks', startDate: '2022-01-01', endDate: '2029-01-01', monthlyRent: 1500, rentDueDay: 1, depositAmount: 3000, noticePeriod: '2 months', nextRentIncreaseDate: '2027-01-01', status: 'active' },
+  { id: 'c9', propertyId: 'p7', unitId: 'u11', tenant: 'Eva Smit', startDate: '2023-12-01', endDate: '2026-12-01', monthlyRent: 950, rentDueDay: 1, depositAmount: 1900, noticePeriod: '1 month', nextRentIncreaseDate: '2026-07-01', status: 'active' },
+  { id: 'c10', propertyId: 'p7', unitId: 'u12', tenant: 'Tom Mulder', startDate: '2023-11-01', endDate: '2026-11-01', monthlyRent: 900, rentDueDay: 1, depositAmount: 1800, noticePeriod: '1 month', nextRentIncreaseDate: '2026-07-01', status: 'active' },
+]
+
+export const mockRentRows: RentRow[] = [
+  { id: 'r1', propertyId: 'p1', unitId: 'u1', tenant: 'Jan de Vries', expectedRent: 1450, amountReceived: 1450, dueDate: '2026-05-01', paidStatus: 'paid', paymentDate: '2026-05-01', notes: '', month: '2026-05' },
+  { id: 'r2', propertyId: 'p1', unitId: 'u2', tenant: 'Maria Santos', expectedRent: 1350, amountReceived: 1350, dueDate: '2026-05-01', paidStatus: 'paid', paymentDate: '2026-05-02', notes: '', month: '2026-05' },
+  { id: 'r3', propertyId: 'p2', unitId: 'u4', tenant: 'Café de Witte', expectedRent: 2200, amountReceived: 0, dueDate: '2026-05-01', paidStatus: 'unpaid', paymentDate: '', notes: 'Payment reminder sent', month: '2026-05' },
+  { id: 'r4', propertyId: 'p3', unitId: 'u5', tenant: 'Sophie Bakker', expectedRent: 1200, amountReceived: 1200, dueDate: '2026-05-01', paidStatus: 'paid', paymentDate: '2026-04-30', notes: '', month: '2026-05' },
+  { id: 'r5', propertyId: 'p3', unitId: 'u6', tenant: 'Ahmed El Amrani', expectedRent: 1100, amountReceived: 800, dueDate: '2026-05-01', paidStatus: 'partial', paymentDate: '2026-05-03', notes: 'Partial — remaining due end of month', month: '2026-05' },
+  { id: 'r6', propertyId: 'p4', unitId: 'u7', tenant: 'Lisa Jansen', expectedRent: 850, amountReceived: 850, dueDate: '2026-05-01', paidStatus: 'paid', paymentDate: '2026-05-01', notes: '', month: '2026-05' },
+  { id: 'r7', propertyId: 'p5', unitId: 'u8', tenant: 'Peter van Dijk', expectedRent: 1350, amountReceived: 0, dueDate: '2026-05-01', paidStatus: 'unpaid', paymentDate: '', notes: '', month: '2026-05' },
+  { id: 'r8', propertyId: 'p6', unitId: 'u10', tenant: 'Familie Hendriks', expectedRent: 1500, amountReceived: 1500, dueDate: '2026-05-01', paidStatus: 'paid', paymentDate: '2026-05-01', notes: '', month: '2026-05' },
+  { id: 'r9', propertyId: 'p7', unitId: 'u11', tenant: 'Eva Smit', expectedRent: 950, amountReceived: 950, dueDate: '2026-05-01', paidStatus: 'paid', paymentDate: '2026-05-02', notes: '', month: '2026-05' },
+  { id: 'r10', propertyId: 'p7', unitId: 'u12', tenant: 'Tom Mulder', expectedRent: 900, amountReceived: 900, dueDate: '2026-05-01', paidStatus: 'paid', paymentDate: '2026-05-01', notes: '', month: '2026-05' },
+]
+
+export const mockExpenses: Expense[] = [
+  { id: 'e1', propertyId: 'p1', description: 'Second floor renovation — plumbing', amount: 8500, date: '2026-03-15', category: 'renovation', recurring: false },
+  { id: 'e2', propertyId: 'p1', description: 'Building insurance 2026', amount: 2400, date: '2026-01-05', category: 'insurance', recurring: true },
+  { id: 'e3', propertyId: 'p2', description: 'Local property tax', amount: 1800, date: '2026-02-01', category: 'local_tax', recurring: true },
+  { id: 'e4', propertyId: 'p3', description: 'Roof maintenance', amount: 3200, date: '2026-04-10', category: 'maintenance', recurring: false },
+  { id: 'e5', propertyId: 'p4', description: 'Mortgage payment (yearly)', amount: 9600, date: '2026-01-01', category: 'mortgage', recurring: true },
+  { id: 'e6', propertyId: 'p5', description: 'New kitchen Unit 2', amount: 12000, date: '2025-12-20', category: 'renovation', recurring: false },
+  { id: 'e7', propertyId: 'p6', description: 'Utilities reimbursement', amount: 600, date: '2026-03-01', category: 'utilities', recurring: false },
+  { id: 'e8', propertyId: null, description: 'Income tax 2025 — final assessment', amount: 18500, date: '2026-04-15', category: 'other', recurring: false },
+  { id: 'e9', propertyId: null, description: 'Accountant — yearly bookkeeping', amount: 3500, date: '2026-03-01', category: 'accountant', recurring: true },
+  { id: 'e10', propertyId: null, description: 'Bank — business account fees', amount: 240, date: '2026-01-15', category: 'bank', recurring: true },
+  { id: 'e11', propertyId: 'p7', description: 'Property management fee Q1', amount: 750, date: '2026-03-31', category: 'management', recurring: true },
+  { id: 'e12', propertyId: 'p8', description: 'Kitchen renovation planning', amount: 1500, date: '2026-04-20', category: 'renovation', recurring: false },
+]
+
+export const mockDocuments: DocRecord[] = [
+  { id: 'd1', propertyId: 'p1', name: '2022-03-01_Keizersgracht274_Contract_JanDeVries.pdf', category: 'contracts', date: '2022-03-01', notes: '' },
+  { id: 'd2', propertyId: 'p1', name: '2026-01-05_Keizersgracht274_Insurance_Policy_2026.pdf', category: 'invoices', date: '2026-01-05', notes: '' },
+  { id: 'd3', propertyId: 'p1', name: '2026-03-15_Keizersgracht274_Invoice_Plumber_8500.pdf', category: 'invoices', date: '2026-03-15', notes: 'Second floor plumbing work' },
+  { id: 'd4', propertyId: 'p2', name: '2020-08-01_WitteDeWith58_Contract_CafeDeWitte.pdf', category: 'contracts', date: '2020-08-01', notes: '' },
+  { id: 'd5', propertyId: 'p3', name: '2026-04-10_Oudegracht112_Invoice_RoofRepair_3200.pdf', category: 'invoices', date: '2026-04-10', notes: '' },
+  { id: 'd6', propertyId: 'p3', name: '2025-11-01_Oudegracht112_Valuation_WOZ_750000.pdf', category: 'valuations', date: '2025-11-01', notes: '' },
+  { id: 'd7', propertyId: 'p5', name: '2025-02-15_Stationsweg23_Photos_Renovation.zip', category: 'photos', date: '2025-02-15', notes: 'After renovation photos' },
+  { id: 'd8', propertyId: 'p8', name: '2026-04-20_Brink9_Drawing_KitchenPlan.pdf', category: 'drawings', date: '2026-04-20', notes: 'Kitchen layout proposal' },
+]
+
+export const mockInboxItems: InboxItem[] = [
+  { id: 'i1', fileName: 'scan_3948_final.pdf', propertyId: 'p1', unitId: 'u1', documentType: 'invoices', documentDate: '2026-05-07', amount: 850, category: 'maintenance', suggestedName: '2026-05-07_Keizersgracht274_Invoice_Plumber_850.pdf', notes: 'Bathroom faucet repair', status: 'pending' },
+  { id: 'i2', fileName: 'IMG_20260510.jpg', propertyId: 'p3', unitId: '', documentType: 'photos', documentDate: '2026-05-10', amount: 0, category: '', suggestedName: '2026-05-10_Oudegracht112_Photo_RoofInspection.jpg', notes: 'Roof inspection photo', status: 'pending' },
+  { id: 'i3', fileName: 'contract_renewal_draft.pdf', propertyId: 'p4', unitId: 'u7', documentType: 'contracts', documentDate: '2026-05-12', amount: 0, category: '', suggestedName: '2026-05-12_GroteMarkt5_Contract_Renewal_LisaJansen.pdf', notes: 'Contract renewal for next period', status: 'pending' },
+]
+
+export const mockDevelopments: Development[] = [
+  { id: 'dev1', propertyId: 'p1', unitId: 'u3', title: 'Second Floor Full Renovation', type: 'renovation', date: '2026-02-01', description: 'Complete renovation of second floor apartment including new plumbing, electrical, and flooring.', linkedDocIds: ['d3'], linkedExpenseIds: ['e1'], notes: 'Expected completion: August 2026' },
+  { id: 'dev2', propertyId: 'p3', unitId: '', title: 'Roof Maintenance & Repair', type: 'maintenance', date: '2026-04-10', description: 'Preventive roof repair after inspection revealed minor leaks near the chimney.', linkedDocIds: ['d5'], linkedExpenseIds: ['e4'], notes: '' },
+  { id: 'dev3', propertyId: 'p5', unitId: 'u9', title: 'Kitchen Renovation Unit 2', type: 'renovation', date: '2025-12-20', description: 'New kitchen installation for Unit 2 to prepare for new tenant.', linkedDocIds: ['d7'], linkedExpenseIds: ['e6'], notes: 'Completed. Unit ready for listing.' },
+  { id: 'dev4', propertyId: 'p8', unitId: 'u13', title: 'Kitchen Renovation Planning', type: 'renovation', date: '2026-04-20', description: 'Planning phase for kitchen renovation. Drawings received.', linkedDocIds: ['d8'], linkedExpenseIds: ['e12'], notes: 'Awaiting contractor quotes' },
+]
+
+export const mockValuations: Valuation[] = [
+  { id: 'v1', propertyId: 'p1', valuationDate: '2025-01-01', valuationAmount: 910000, valuationType: 'woz', notes: 'WOZ 2025', linkedDocId: '' },
+  { id: 'v2', propertyId: 'p2', valuationDate: '2025-01-01', valuationAmount: 420000, valuationType: 'woz', notes: 'WOZ 2025', linkedDocId: '' },
+  { id: 'v3', propertyId: 'p3', valuationDate: '2025-01-01', valuationAmount: 750000, valuationType: 'woz', notes: 'WOZ 2025', linkedDocId: 'd6' },
+  { id: 'v4', propertyId: 'p3', valuationDate: '2025-06-15', valuationAmount: 780000, valuationType: 'official_appraisal', notes: 'Appraisal for refinancing', linkedDocId: '' },
+  { id: 'v5', propertyId: 'p4', valuationDate: '2025-01-01', valuationAmount: 315000, valuationType: 'woz', notes: 'WOZ 2025', linkedDocId: '' },
+  { id: 'v6', propertyId: 'p5', valuationDate: '2025-01-01', valuationAmount: 610000, valuationType: 'woz', notes: 'WOZ 2025', linkedDocId: '' },
+  { id: 'v7', propertyId: 'p5', valuationDate: '2026-02-01', valuationAmount: 650000, valuationType: 'bank_valuation', notes: 'Post-renovation bank valuation', linkedDocId: '' },
+  { id: 'v8', propertyId: 'p6', valuationDate: '2025-01-01', valuationAmount: 370000, valuationType: 'woz', notes: 'WOZ 2025', linkedDocId: '' },
+  { id: 'v9', propertyId: 'p7', valuationDate: '2025-01-01', valuationAmount: 290000, valuationType: 'woz', notes: 'WOZ 2025', linkedDocId: '' },
+  { id: 'v10', propertyId: 'p8', valuationDate: '2025-01-01', valuationAmount: 205000, valuationType: 'woz', notes: 'WOZ 2025', linkedDocId: '' },
+]
