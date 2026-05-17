@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" fill="none">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="40" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+  </defs>
+  <!-- House icon -->
+  <path d="M25 8L4 26h6v20h12v-14h6v14h12V26h6L25 8z" fill="url(#g)"/>
+  <rect x="21" y="26" width="8" height="8" rx="1" fill="white"/>
+  <!-- DOMO text -->
+  <text x="60" y="42" font-family="system-ui,-apple-system,sans-serif" font-size="32" font-weight="800" fill="#1E293B" letter-spacing="2">DOMO</text>
+</svg>

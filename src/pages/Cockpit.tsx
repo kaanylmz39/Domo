@@ -1,35 +1,17 @@
 import { eur } from '../utils/format'
 import type { Store } from '../store'
-import { AlertTriangle, TrendingUp, TrendingDown, DollarSign, AlertCircle } from 'lucide-react'
+import { TrendingUp, TrendingDown, DollarSign, AlertCircle } from 'lucide-react'
 
 interface Props { store: Store }
 
 export default function Cockpit({ store }: Props) {
-  const { properties, rentRows, expenses, contracts } = store
+  const { properties, rentRows, expenses } = store
 
   const monthlyIncome = properties.flatMap(p => p.units).filter(u => u.status === 'rented').reduce((s, u) => s + u.monthlyRent, 0)
   const yearlyIncome = monthlyIncome * 12
   const yearlyExpenses = expenses.reduce((s, e) => s + e.amount, 0)
   const yearlyResult = yearlyIncome - yearlyExpenses
   const unpaidRent = rentRows.filter(r => r.paidStatus !== 'paid').reduce((s, r) => s + (r.expectedRent - r.amountReceived), 0)
-
-  const warnings: string[] = []
-  contracts.forEach(c => {
-    if (c.status === 'active' && c.endDate) {
-      const daysLeft = (new Date(c.endDate).getTime() - Date.now()) / 86400000
-      if (daysLeft < 90 && daysLeft > 0) {
-        const prop = properties.find(p => p.id === c.propertyId)
-        warnings.push(`${prop?.address ?? 'Unknown'} — contract for ${c.tenant} ending soon`)
-      }
-    }
-    if (c.status === 'active' && c.nextRentIncreaseDate) {
-      const daysToIncrease = (new Date(c.nextRentIncreaseDate).getTime() - Date.now()) / 86400000
-      if (daysToIncrease < 60 && daysToIncrease > 0) {
-        const prop = properties.find(p => p.id === c.propertyId)
-        warnings.push(`${prop?.address ?? 'Unknown'} — rent increase possible for ${c.tenant}`)
-      }
-    }
-  })
 
   const recentActivity = [
     { text: 'Rent received — Jan de Vries, Keizersgracht 274', date: '2026-05-01' },
@@ -85,22 +67,6 @@ export default function Cockpit({ store }: Props) {
             ))}
           </div>
         </div>
-
-        {warnings.length > 0 && (
-          <div className="lg:col-span-2 bg-amber-50 rounded-xl border border-amber-200 p-5">
-            <h2 className="text-sm font-semibold text-amber-800 uppercase tracking-wide mb-3 flex items-center gap-2">
-              <AlertTriangle size={16} /> Warnings
-            </h2>
-            <ul className="space-y-2">
-              {warnings.map((w, i) => (
-                <li key={i} className="text-sm text-amber-700 flex items-start gap-2">
-                  <span className="mt-1 w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
-                  {w}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
       </div>
     </div>
   )

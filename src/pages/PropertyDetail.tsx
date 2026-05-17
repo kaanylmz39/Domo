@@ -7,7 +7,7 @@ import Badge from '../components/ui/Badge'
 
 interface Props { store: Store }
 
-const tabs = ['Overview', 'Units', 'Financials', 'Contracts', 'Documents', 'Developments', 'Valuations', 'Warnings'] as const
+const tabs = ['Overview', 'Units', 'Financials', 'Contracts', 'Documents', 'Developments', 'Valuations'] as const
 
 export default function PropertyDetail({ store }: Props) {
   const { id } = useParams()
@@ -23,21 +23,6 @@ export default function PropertyDetail({ store }: Props) {
   const propDevs = store.developments.filter(d => d.propertyId === id)
   const propVals = store.valuations.filter(v => v.propertyId === id)
   const propRent = store.rentRows.filter(r => r.propertyId === id)
-
-  const warnings: string[] = []
-  propContracts.forEach(c => {
-    if (c.status === 'active' && c.endDate) {
-      const days = (new Date(c.endDate).getTime() - Date.now()) / 86400000
-      if (days < 90 && days > 0) warnings.push(`Contract for ${c.tenant} ending ${fmtDate(c.endDate)}`)
-    }
-    if (c.status === 'active' && c.nextRentIncreaseDate) {
-      const days = (new Date(c.nextRentIncreaseDate).getTime() - Date.now()) / 86400000
-      if (days < 60 && days > 0) warnings.push(`Rent increase possible for ${c.tenant} on ${fmtDate(c.nextRentIncreaseDate)}`)
-    }
-  })
-  propRent.filter(r => r.paidStatus !== 'paid').forEach(r => {
-    warnings.push(`Unpaid rent: ${r.tenant} — ${eur(r.expectedRent - r.amountReceived)} outstanding`)
-  })
 
   const docCategories = ['contracts', 'invoices', 'bank_statements', 'tax_documents', 'photos', 'drawings', 'renovation', 'valuations', 'other'] as const
 
@@ -62,9 +47,6 @@ export default function PropertyDetail({ store }: Props) {
             }`}
           >
             {t}
-            {t === 'Warnings' && warnings.length > 0 && (
-              <span className="ml-1.5 bg-amber-100 text-amber-700 text-xs px-1.5 py-0.5 rounded-full">{warnings.length}</span>
-            )}
           </button>
         ))}
       </div>
@@ -286,22 +268,6 @@ export default function PropertyDetail({ store }: Props) {
         </div>
       )}
 
-      {tab === 'Warnings' && (
-        <div className="bg-white rounded-xl border border-gray-200 p-6">
-          {warnings.length > 0 ? (
-            <ul className="space-y-3">
-              {warnings.map((w, i) => (
-                <li key={i} className="flex items-start gap-3 text-sm text-amber-700">
-                  <span className="mt-1.5 w-2 h-2 rounded-full bg-amber-500 shrink-0" />
-                  {w}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="text-gray-400 text-sm">No warnings for this property.</p>
-          )}
-        </div>
-      )}
     </div>
   )
 }
