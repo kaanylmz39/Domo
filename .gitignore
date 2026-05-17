@@ -7,3 +7,4 @@ Domo*.zip
 index.html.txt
 .claude/
 *.png
+!public/logo.png

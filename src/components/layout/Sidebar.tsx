@@ -16,8 +16,8 @@ const links = [
 export default function Sidebar() {
   return (
     <aside className="fixed left-0 top-0 bottom-0 w-60 bg-white border-r border-gray-200 flex flex-col z-40">
-      <div className="h-16 flex items-center px-5 border-b border-gray-100">
-        <img src={import.meta.env.BASE_URL + 'logo.svg'} alt="Domo" className="h-8" />
+      <div className="h-16 flex items-center px-4 border-b border-gray-100">
+        <img src={import.meta.env.BASE_URL + 'logo.png'} alt="Domo" className="h-10 w-auto object-contain" />
       </div>
       <nav className="flex-1 py-4 px-3 space-y-1">
         {links.map(l => (
