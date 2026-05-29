@@ -15,7 +15,7 @@ export default function App() {
   return (
     <div className="min-h-screen">
       <Sidebar />
-      <main className="ml-60 p-8">
+      <main className="pt-16 px-4 pb-8 lg:pt-8 lg:pl-68 lg:pr-8 lg:ml-60">
         <Routes>
           <Route path="/" element={<Cockpit store={store} />} />
           <Route path="/portfolio" element={<Portfolio store={store} />} />

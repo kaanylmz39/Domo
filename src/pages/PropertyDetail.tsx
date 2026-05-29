@@ -37,7 +37,7 @@ export default function PropertyDetail({ store }: Props) {
         <Badge color={property.status === 'active' ? 'green' : 'gray'}>{property.status}</Badge>
       </div>
 
-      <div className="flex gap-1 mb-6 border-b border-gray-200">
+      <div className="flex gap-1 mb-6 border-b border-gray-200 overflow-x-auto">
         {tabs.map(t => (
           <button
             key={t}
@@ -81,7 +81,7 @@ export default function PropertyDetail({ store }: Props) {
       )}
 
       {tab === 'Units' && (
-        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+        <div className="bg-white rounded-xl border border-gray-200 overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gray-100 text-left text-xs uppercase tracking-wide text-gray-500">
@@ -129,7 +129,7 @@ export default function PropertyDetail({ store }: Props) {
               <div className="text-xl font-bold text-amber-600 mt-1">{eur(propRent.filter(r => r.paidStatus !== 'paid').reduce((s, r) => s + (r.expectedRent - r.amountReceived), 0))}</div>
             </div>
           </div>
-          <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+          <div className="bg-white rounded-xl border border-gray-200 overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-gray-100 text-left text-xs uppercase tracking-wide text-gray-500">
@@ -158,7 +158,7 @@ export default function PropertyDetail({ store }: Props) {
       )}
 
       {tab === 'Contracts' && (
-        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+        <div className="bg-white rounded-xl border border-gray-200 overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gray-100 text-left text-xs uppercase tracking-wide text-gray-500">
@@ -241,7 +241,7 @@ export default function PropertyDetail({ store }: Props) {
       )}
 
       {tab === 'Valuations' && (
-        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+        <div className="bg-white rounded-xl border border-gray-200 overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gray-100 text-left text-xs uppercase tracking-wide text-gray-500">
