@@ -28,7 +28,7 @@ export default function PropertyDetail({ store }: Props) {
 
   return (
     <div>
-      <button onClick={() => navigate('/portfolio')} className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700 mb-4">
+      <button onClick={() => navigate('/app/portfolio')} className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700 mb-4">
         <ArrowLeft size={16} /> Back to Portfolio
       </button>
 

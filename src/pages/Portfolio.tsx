@@ -139,7 +139,7 @@ export default function Portfolio({ store }: Props) {
                   <tr
                     key={p.id}
                     className="border-b border-gray-50 hover:bg-gray-50 cursor-pointer transition"
-                    onClick={() => navigate(`/property/${p.id}`)}
+                    onClick={() => navigate(`/app/property/${p.id}`)}
                   >
                     <td className="px-4 py-3" onClick={e => { e.stopPropagation(); if (hasMultipleUnits) toggleExpand(p.id) }}>
                       {hasMultipleUnits && (

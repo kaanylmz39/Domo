@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Sidebar from './components/layout/Sidebar'
 import { useStore } from './store'
+import Landing from './pages/Landing'
 import Cockpit from './pages/Cockpit'
 import Portfolio from './pages/Portfolio'
 import PropertyDetail from './pages/PropertyDetail'
@@ -9,9 +10,7 @@ import AIInbox from './pages/AIInbox'
 import Reports from './pages/Reports'
 import Settings from './pages/Settings'
 
-export default function App() {
-  const store = useStore()
-
+function DashboardLayout({ store }: { store: ReturnType<typeof useStore> }) {
   return (
     <div className="min-h-screen">
       <Sidebar />
@@ -27,5 +26,16 @@ export default function App() {
         </Routes>
       </main>
     </div>
+  )
+}
+
+export default function App() {
+  const store = useStore()
+
+  return (
+    <Routes>
+      <Route path="/" element={<Landing />} />
+      <Route path="/app/*" element={<DashboardLayout store={store} />} />
+    </Routes>
   )
 }

@@ -6,12 +6,12 @@ import {
 } from 'lucide-react'
 
 const links = [
-  { to: '/', label: 'Cockpit', icon: LayoutDashboard },
-  { to: '/portfolio', label: 'Portfolio', icon: Building2 },
-  { to: '/rent-control', label: 'Rent Control', icon: Receipt },
-  { to: '/ai-inbox', label: 'AI Inbox', icon: Inbox },
-  { to: '/reports', label: 'Reports', icon: BarChart3 },
-  { to: '/settings', label: 'Settings', icon: Settings },
+  { to: '/app', label: 'Cockpit', icon: LayoutDashboard },
+  { to: '/app/portfolio', label: 'Portfolio', icon: Building2 },
+  { to: '/app/rent-control', label: 'Rent Control', icon: Receipt },
+  { to: '/app/ai-inbox', label: 'AI Inbox', icon: Inbox },
+  { to: '/app/reports', label: 'Reports', icon: BarChart3 },
+  { to: '/app/settings', label: 'Settings', icon: Settings },
 ]
 
 export default function Sidebar() {
@@ -42,7 +42,7 @@ export default function Sidebar() {
             <NavLink
               key={l.to}
               to={l.to}
-              end={l.to === '/'}
+              end={l.to === '/app'}
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
