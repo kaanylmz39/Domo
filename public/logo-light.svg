@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 2000">
+  <g fill="none" stroke="#B6E972" stroke-width="34" stroke-linecap="butt" stroke-linejoin="round">
+    <!-- 1. Outer isometric cube outline -->
+    <path d="M 1000 418 L 707 592 L 707 908 L 1000 1079 L 1286 908 L 1286 592 Z"/>
+    <!-- 2. Top inner V / diamond bottom -->
+    <path d="M 836 515 L 1000 613 L 1165 515"/>
+    <!-- 3. Front upper zig-zag edge -->
+    <path d="M 707 592 L 1000 740 L 1286 592"/>
+    <!-- 4. Left internal lower diagonal -->
+    <line x1="707" y1="704" x2="879" y2="806"/>
+    <!-- 5. Main diagonal across the front face -->
+    <line x1="707" y1="908" x2="1286" y2="592"/>
+    <!-- 6. Lower internal diagonal -->
+    <line x1="879" y1="1006" x2="1286" y2="758"/>
+  </g>
+  <text x="1000" y="1430" text-anchor="middle" font-family="'Montserrat','Poppins','Arial Black',sans-serif" font-weight="800" font-size="190" letter-spacing="18" fill="#B6E972">DOMO</text>
+</svg>
