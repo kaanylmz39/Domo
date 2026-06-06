@@ -21,7 +21,7 @@ export default function Sidebar() {
     <>
       {/* Mobile top bar */}
       <div className="lg:hidden fixed top-0 left-0 right-0 h-14 bg-white border-b border-gray-200 flex items-center justify-between px-4 z-50">
-        <img src={import.meta.env.BASE_URL + 'logo-light.svg'} alt="Domo" className="h-8 object-contain" />
+        <img src={import.meta.env.BASE_URL + 'logo-light.svg'} alt="Domo" className="h-12 object-contain" />
         <button onClick={() => setOpen(!open)} className="p-2 rounded-lg hover:bg-gray-100 text-gray-600">
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
@@ -35,7 +35,7 @@ export default function Sidebar() {
         open ? 'translate-x-0' : '-translate-x-full'
       } lg:translate-x-0 lg:left-0`}>
         <div className="h-[60px] flex items-center justify-center px-3 border-b border-gray-100">
-          <img src={import.meta.env.BASE_URL + 'logo-light.svg'} alt="Domo" className="w-44 object-contain" />
+          <img src={import.meta.env.BASE_URL + 'logo-light.svg'} alt="Domo" className="h-14 object-contain" />
         </div>
         <nav className="flex-1 py-4 px-3 space-y-1 overflow-y-auto">
           {links.map(l => (
