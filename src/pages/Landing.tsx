@@ -120,7 +120,7 @@ export default function Landing() {
       {/* ── Nav ─────────────────────────────────────────── */}
       <nav className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md border-b border-gray-100 z-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
-          <img src={import.meta.env.BASE_URL + 'logo.png'} alt="Domo" className="h-14 object-contain" />
+          <img src={import.meta.env.BASE_URL + 'logo-white.svg'} alt="Domo" className="h-10 object-contain" />
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
             <a href="#features" className="hover:text-gray-900 transition">Features</a>
             <a href="#pricing" className="hover:text-gray-900 transition">Pricing</a>
@@ -462,7 +462,7 @@ export default function Landing() {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             <div className="col-span-2 md:col-span-1">
-              <div className="bg-white/10 rounded-xl px-4 py-2 inline-block mb-4"><img src={import.meta.env.BASE_URL + 'logo.png'} alt="Domo" className="h-10 object-contain" /></div>
+              <img src={import.meta.env.BASE_URL + 'logo-green.svg'} alt="Domo" className="h-10 object-contain mb-4" />
               <p className="text-sm leading-relaxed">
                 The property management cockpit for Dutch landlords and real estate investors.
               </p>
