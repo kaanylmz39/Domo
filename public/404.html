@@ -4,9 +4,13 @@
     <meta charset="utf-8">
     <title>Domo</title>
     <script>
-      // Redirect all 404s to index.html for client-side routing
-      var path = window.location.pathname;
-      window.location.replace(window.location.origin + path);
+      // Redirect all 404s to index.html for client-side routing on GitHub Pages
+      var base = '/Domo/';
+      var path = window.location.pathname.slice(base.length);
+      var search = window.location.search;
+      window.location.replace(
+        window.location.origin + base + '?' + 'p=/' + path + (search ? '&' + search.slice(1) : '')
+      );
     </script>
   </head>
   <body></body>
