@@ -1,4 +1,3 @@
-import type { FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Building2, Shield, FileText, BarChart3, Receipt, Inbox,
@@ -66,7 +65,7 @@ const plans = [
       'Priority email support',
     ],
     cta: 'Request Access',
-    href: '#contact',
+    href: '/contact',
     highlight: true,
   },
   {
@@ -85,7 +84,7 @@ const plans = [
       'Data export & backup',
     ],
     cta: 'Request Special Price',
-    href: '#contact',
+    href: '/contact',
     highlight: false,
   },
 ]
@@ -119,20 +118,6 @@ const faqs = [
 ]
 
 export default function Landing() {
-  function handleContactSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    const form = new FormData(e.currentTarget)
-    const name = String(form.get('name') ?? '')
-    const email = String(form.get('email') ?? '')
-    const portfolio = String(form.get('portfolio') ?? '')
-    const message = String(form.get('message') ?? '')
-    const subject = encodeURIComponent(`Domo contact request from ${name || 'website visitor'}`)
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nPortfolio: ${portfolio}\n\nMessage:\n${message}`
-    )
-    window.location.href = `mailto:info@domo.nl?subject=${subject}&body=${body}`
-  }
-
   return (
     <div className="min-h-screen bg-white">
       {/* ── Nav ─────────────────────────────────────────── */}
@@ -142,9 +127,9 @@ export default function Landing() {
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
             <a href="#features" className="hover:text-gray-900 transition">Features</a>
             <a href="#pricing" className="hover:text-gray-900 transition">Pricing</a>
-            <a href="#about" className="hover:text-gray-900 transition">About</a>
+            <Link to="/about" className="hover:text-gray-900 transition">About</Link>
             <a href="#compare" className="hover:text-gray-900 transition">Why Domo</a>
-            <a href="#contact" className="hover:text-gray-900 transition">Contact</a>
+            <Link to="/contact" className="hover:text-gray-900 transition">Contact</Link>
           </div>
           <div className="flex items-center gap-3">
             <Link to="/app" className="hidden sm:inline-flex text-sm font-medium text-gray-600 hover:text-gray-900 transition">
@@ -274,37 +259,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* About */}
-      <section id="about" className="py-20 sm:py-24 px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <p className="text-sm font-semibold text-brand-600 uppercase tracking-wide mb-3">About Domo</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-5">Built for property owners who outgrew Excel.</h2>
-            <p className="text-lg text-gray-500 leading-relaxed mb-5">
-              Domo started from a simple problem: real estate data is scattered across spreadsheets, folders, bank statements, contracts, and email inboxes.
-            </p>
-            <p className="text-gray-500 leading-relaxed">
-              Our goal is to give landlords and investors one calm cockpit for every property, unit, document, payment, valuation, and report. Serious enough for finance, simple enough to use every week.
-            </p>
-          </div>
-          <div className="bg-gray-50 rounded-2xl border border-gray-200 p-6">
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                ['Property first', 'Everything starts from the property dossier.'],
-                ['Unit level detail', 'Track rent, tenants, and contracts per unit.'],
-                ['Dutch market focus', 'WOZ, rent control, and accountant-ready records.'],
-                ['Clean archive', 'Documents stay organized by property and category.'],
-              ].map(([title, text]) => (
-                <div key={title} className="bg-white rounded-xl border border-gray-200 p-4">
-                  <h3 className="font-semibold text-gray-900 mb-2">{title}</h3>
-                  <p className="text-sm text-gray-500 leading-relaxed">{text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ── Features ────────────────────────────────────── */}
       <section id="features" className="py-20 sm:py-24 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
@@ -411,29 +365,16 @@ export default function Landing() {
                     </li>
                   ))}
                 </ul>
-                {p.href.startsWith('#') ? (
-                  <a
-                    href={p.href}
-                    className={`w-full text-center py-2.5 rounded-lg text-sm font-semibold transition ${
-                      p.highlight
-                        ? 'bg-brand-600 text-white hover:bg-brand-700 shadow-md'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
-                  >
-                    {p.cta}
-                  </a>
-                ) : (
-                  <Link
-                    to={p.href}
-                    className={`w-full text-center py-2.5 rounded-lg text-sm font-semibold transition ${
-                      p.highlight
-                        ? 'bg-brand-600 text-white hover:bg-brand-700 shadow-md'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
-                  >
-                    {p.cta}
-                  </Link>
-                )}
+                <Link
+                  to={p.href}
+                  className={`w-full text-center py-2.5 rounded-lg text-sm font-semibold transition ${
+                    p.highlight
+                      ? 'bg-brand-600 text-white hover:bg-brand-700 shadow-md'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  {p.cta}
+                </Link>
               </div>
             ))}
           </div>
@@ -499,53 +440,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Contact */}
-      <section id="contact" className="py-20 sm:py-24 px-4 sm:px-6 bg-gray-50">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10">
-          <div>
-            <p className="text-sm font-semibold text-brand-600 uppercase tracking-wide mb-3">Contact</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-5">Want to talk about your portfolio?</h2>
-            <p className="text-lg text-gray-500 leading-relaxed mb-6">
-              Tell us how many properties you manage and what you want Domo to solve first. We will use your message to prepare a focused demo.
-            </p>
-            <div className="space-y-3 text-sm text-gray-600">
-              <div className="flex items-center gap-2"><Check size={16} className="text-brand-600" /> Starter plan stays free</div>
-              <div className="flex items-center gap-2"><Check size={16} className="text-brand-600" /> Growth plan supports 20 properties</div>
-              <div className="flex items-center gap-2"><Check size={16} className="text-brand-600" /> Pro pricing is available on request</div>
-            </div>
-          </div>
-          <form onSubmit={handleContactSubmit} className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <label className="block">
-                <span className="text-sm font-medium text-gray-700">Name</span>
-                <input name="name" required className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500" />
-              </label>
-              <label className="block">
-                <span className="text-sm font-medium text-gray-700">Email</span>
-                <input name="email" type="email" required className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500" />
-              </label>
-            </div>
-            <label className="block">
-              <span className="text-sm font-medium text-gray-700">Portfolio size</span>
-              <select name="portfolio" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500">
-                <option>1-3 properties</option>
-                <option>4-20 properties</option>
-                <option>20+ properties</option>
-                <option>Property manager / team</option>
-              </select>
-            </label>
-            <label className="block">
-              <span className="text-sm font-medium text-gray-700">Message</span>
-              <textarea name="message" rows={5} required className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500" placeholder="Tell us what you want Domo to help with..." />
-            </label>
-            <button type="submit" className="w-full bg-brand-600 text-white py-3 rounded-lg text-sm font-semibold hover:bg-brand-700 transition">
-              Send Request
-            </button>
-            <p className="text-xs text-gray-400 text-center">This opens your email app with the message prepared.</p>
-          </form>
-        </div>
-      </section>
-
       {/* ── CTA ─────────────────────────────────────────── */}
       <section className="py-20 sm:py-24 px-4 sm:px-6 bg-brand-700">
         <div className="max-w-3xl mx-auto text-center">
@@ -583,14 +477,14 @@ export default function Landing() {
                 <li><a href="#features" className="hover:text-white transition">Features</a></li>
                 <li><a href="#pricing" className="hover:text-white transition">Pricing</a></li>
                 <li><a href="#compare" className="hover:text-white transition">Why Domo</a></li>
-                <li><a href="#contact" className="hover:text-white transition">Contact</a></li>
+                <li><Link to="/contact" className="hover:text-white transition">Contact</Link></li>
                 <li><Link to="/app" className="hover:text-white transition">Dashboard</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="text-white font-semibold text-sm mb-4">Company</h4>
               <ul className="space-y-2.5 text-sm">
-                <li><a href="#about" className="hover:text-white transition">About Us</a></li>
+                <li><Link to="/about" className="hover:text-white transition">About Us</Link></li>
                 <li><a href="#" className="hover:text-white transition">Blog</a></li>
                 <li><a href="#" className="hover:text-white transition">Careers</a></li>
                 <li><a href="#" className="hover:text-white transition">Press</a></li>
@@ -600,7 +494,7 @@ export default function Landing() {
               <h4 className="text-white font-semibold text-sm mb-4">Support</h4>
               <ul className="space-y-2.5 text-sm">
                 <li><a href="#" className="hover:text-white transition">Help Center</a></li>
-                <li><a href="#contact" className="hover:text-white transition">Contact</a></li>
+                <li><Link to="/contact" className="hover:text-white transition">Contact</Link></li>
                 <li><a href="#" className="hover:text-white transition">Privacy Policy</a></li>
                 <li><a href="#" className="hover:text-white transition">Terms of Service</a></li>
               </ul>

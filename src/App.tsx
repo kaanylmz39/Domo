@@ -2,6 +2,8 @@ import { Routes, Route } from 'react-router-dom'
 import Sidebar from './components/layout/Sidebar'
 import { useStore } from './store'
 import Landing from './pages/Landing'
+import About from './pages/About'
+import Contact from './pages/Contact'
 import Cockpit from './pages/Cockpit'
 import Portfolio from './pages/Portfolio'
 import PropertyDetail from './pages/PropertyDetail'
@@ -35,6 +37,8 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/contact" element={<Contact />} />
       <Route path="/app/*" element={<DashboardLayout store={store} />} />
     </Routes>
   )
