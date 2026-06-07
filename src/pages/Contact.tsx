@@ -1,6 +1,7 @@
 import type { FormEvent } from 'react'
-import { Link } from 'react-router-dom'
-import { ArrowRight, Check, Mail, MessageSquare, Shield } from 'lucide-react'
+import { Check, Mail, MessageSquare, Shield } from 'lucide-react'
+import MarketingFooter from '../components/layout/MarketingFooter'
+import MarketingNav from '../components/layout/MarketingNav'
 
 export default function Contact() {
   function handleContactSubmit(e: FormEvent<HTMLFormElement>) {
@@ -19,20 +20,7 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <nav className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md border-b border-gray-100 z-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
-          <Link to="/"><img src={import.meta.env.BASE_URL + 'logo-light.svg'} alt="Domo" className="h-16 object-contain" /></Link>
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-            <Link to="/#features" className="hover:text-gray-900 transition">Features</Link>
-            <Link to="/#pricing" className="hover:text-gray-900 transition">Pricing</Link>
-            <Link to="/about" className="hover:text-gray-900 transition">About</Link>
-            <Link to="/contact" className="text-gray-900">Contact</Link>
-          </div>
-          <Link to="/app" className="bg-brand-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-brand-700 transition flex items-center gap-2">
-            Get Started <ArrowRight size={14} />
-          </Link>
-        </div>
-      </nav>
+      <MarketingNav active="contact" />
 
       <main className="pt-32 pb-20 px-4 sm:px-6">
         <section className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10">
@@ -108,6 +96,7 @@ export default function Contact() {
           </form>
         </section>
       </main>
+      <MarketingFooter />
     </div>
   )
 }
