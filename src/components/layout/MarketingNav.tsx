@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 
 interface Props {
-  active?: 'about' | 'blog' | 'careers' | 'press' | 'contact'
+  active?: 'about' | 'blog' | 'careers' | 'press' | 'contact' | 'why'
 }
 
 const linkClass = (isActive: boolean) =>
@@ -19,7 +19,7 @@ export default function MarketingNav({ active }: Props) {
           <Link to="/#features" className={linkClass(false)}>Features</Link>
           <Link to="/#pricing" className={linkClass(false)}>Pricing</Link>
           <Link to="/about" className={linkClass(active === 'about')}>About</Link>
-          <Link to="/#compare" className={linkClass(false)}>Why Domo</Link>
+          <Link to="/why-domo" className={linkClass(active === 'why')}>Why Domo</Link>
           <Link to="/contact" className={linkClass(active === 'contact')}>Contact</Link>
         </div>
         <Link to="/app" className="bg-brand-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-brand-700 transition flex items-center gap-2">

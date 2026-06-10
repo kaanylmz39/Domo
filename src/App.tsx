@@ -6,7 +6,11 @@ import About from './pages/About'
 import Blog from './pages/Blog'
 import Careers from './pages/Careers'
 import Contact from './pages/Contact'
+import HelpCenter from './pages/HelpCenter'
 import Press from './pages/Press'
+import PrivacyPolicy from './pages/PrivacyPolicy'
+import TermsOfService from './pages/TermsOfService'
+import WhyDomo from './pages/WhyDomo'
 import Cockpit from './pages/Cockpit'
 import Portfolio from './pages/Portfolio'
 import PropertyDetail from './pages/PropertyDetail'
@@ -44,7 +48,11 @@ export default function App() {
       <Route path="/blog" element={<Blog />} />
       <Route path="/careers" element={<Careers />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/help" element={<HelpCenter />} />
       <Route path="/press" element={<Press />} />
+      <Route path="/privacy" element={<PrivacyPolicy />} />
+      <Route path="/terms" element={<TermsOfService />} />
+      <Route path="/why-domo" element={<WhyDomo />} />
       <Route path="/app/*" element={<DashboardLayout store={store} />} />
     </Routes>
   )

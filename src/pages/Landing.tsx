@@ -128,7 +128,7 @@ export default function Landing() {
             <a href="#features" className="hover:text-gray-900 transition">Features</a>
             <a href="#pricing" className="hover:text-gray-900 transition">Pricing</a>
             <Link to="/about" className="hover:text-gray-900 transition">About</Link>
-            <a href="#compare" className="hover:text-gray-900 transition">Why Domo</a>
+            <Link to="/why-domo" className="hover:text-gray-900 transition">Why Domo</Link>
             <Link to="/contact" className="hover:text-gray-900 transition">Contact</Link>
           </div>
           <div className="flex items-center gap-3">
@@ -476,7 +476,7 @@ export default function Landing() {
               <ul className="space-y-2.5 text-sm">
                 <li><a href="#features" className="hover:text-white transition">Features</a></li>
                 <li><a href="#pricing" className="hover:text-white transition">Pricing</a></li>
-                <li><a href="#compare" className="hover:text-white transition">Why Domo</a></li>
+                <li><Link to="/why-domo" className="hover:text-white transition">Why Domo</Link></li>
                 <li><Link to="/contact" className="hover:text-white transition">Contact</Link></li>
                 <li><Link to="/app" className="hover:text-white transition">Dashboard</Link></li>
               </ul>
@@ -493,10 +493,10 @@ export default function Landing() {
             <div>
               <h4 className="text-white font-semibold text-sm mb-4">Support</h4>
               <ul className="space-y-2.5 text-sm">
-                <li><a href="#" className="hover:text-white transition">Help Center</a></li>
+                <li><Link to="/help" className="hover:text-white transition">Help Center</Link></li>
                 <li><Link to="/contact" className="hover:text-white transition">Contact</Link></li>
-                <li><a href="#" className="hover:text-white transition">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white transition">Terms of Service</a></li>
+                <li><Link to="/privacy" className="hover:text-white transition">Privacy Policy</Link></li>
+                <li><Link to="/terms" className="hover:text-white transition">Terms of Service</Link></li>
               </ul>
             </div>
           </div>

@@ -16,7 +16,7 @@ export default function MarketingFooter() {
             <ul className="space-y-2.5 text-sm">
               <li><Link to="/#features" className="hover:text-white transition">Features</Link></li>
               <li><Link to="/#pricing" className="hover:text-white transition">Pricing</Link></li>
-              <li><Link to="/#compare" className="hover:text-white transition">Why Domo</Link></li>
+              <li><Link to="/why-domo" className="hover:text-white transition">Why Domo</Link></li>
               <li><Link to="/contact" className="hover:text-white transition">Contact</Link></li>
               <li><Link to="/app" className="hover:text-white transition">Dashboard</Link></li>
             </ul>
@@ -33,10 +33,10 @@ export default function MarketingFooter() {
           <div>
             <h4 className="text-white font-semibold text-sm mb-4">Support</h4>
             <ul className="space-y-2.5 text-sm">
-              <li><a href="#" className="hover:text-white transition">Help Center</a></li>
+              <li><Link to="/help" className="hover:text-white transition">Help Center</Link></li>
               <li><Link to="/contact" className="hover:text-white transition">Contact</Link></li>
-              <li><a href="#" className="hover:text-white transition">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-white transition">Terms of Service</a></li>
+              <li><Link to="/privacy" className="hover:text-white transition">Privacy Policy</Link></li>
+              <li><Link to="/terms" className="hover:text-white transition">Terms of Service</Link></li>
             </ul>
           </div>
         </div>
