@@ -30,13 +30,13 @@ export default function Contact() {
               Want to talk about your portfolio?
             </h1>
             <p className="text-lg text-gray-500 leading-relaxed mb-8">
-              Tell us how many properties you manage and what you want Domo to solve first. We will use your message to prepare a focused demo.
+              Tell us how many units you manage and what you want Domo to solve first. We will use your message to prepare a focused demo.
             </p>
             <div className="space-y-4">
               {[
-                ['Starter plan stays free', 'Start organizing a small portfolio without paying.'],
-                ['Growth supports 20 properties', 'For active landlords who want structure and control.'],
-                ['Pro pricing on request', 'For larger portfolios, teams, and special setup needs.'],
+                ['Freemium stays free', 'Start organizing up to 5 units without paying.'],
+                ['Starter supports 20 units', 'For active landlords who want structure and control.'],
+                ['Custom pricing starts from €299', 'For portfolios above 75 units, teams, and special setup needs.'],
               ].map(([title, text]) => (
                 <div key={title} className="flex gap-3">
                   <div className="w-9 h-9 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center shrink-0">
@@ -79,9 +79,10 @@ export default function Contact() {
             <label className="block">
               <span className="text-sm font-medium text-gray-700">Portfolio size</span>
               <select name="portfolio" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500">
-                <option>1-3 properties</option>
-                <option>4-20 properties</option>
-                <option>20+ properties</option>
+                <option>1-5 units</option>
+                <option>6-20 units</option>
+                <option>21-75 units</option>
+                <option>75+ units</option>
                 <option>Property manager / team</option>
               </select>
             </label>

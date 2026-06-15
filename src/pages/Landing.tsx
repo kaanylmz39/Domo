@@ -33,13 +33,12 @@ const steps = [
 /* ── Pricing ────────────────────────────────────────────── */
 const plans = [
   {
-    name: 'Starter',
+    name: 'Freemium',
     price: '€0',
     period: '/month',
-    desc: 'For landlords who want to organize their first properties.',
+    desc: 'For owners who want to organize a small portfolio first.',
     features: [
-      'Up to 3 properties',
-      'Unlimited units per property',
+      'Up to 5 units',
       'Rent tracking',
       'Document storage (100 MB)',
       'Basic reports',
@@ -50,13 +49,12 @@ const plans = [
     highlight: false,
   },
   {
-    name: 'Growth',
-    price: '€59',
+    name: 'Starter',
+    price: '€89',
     period: '/month',
-    desc: 'For active landlords managing a serious portfolio.',
+    desc: 'For active landlords who need clearer monthly control.',
     features: [
-      'Up to 20 properties',
-      'Unlimited units per property',
+      'Up to 20 units',
       'AI Inbox & smart filing',
       'Unlimited document storage',
       'Bank & tax reports',
@@ -69,21 +67,36 @@ const plans = [
     highlight: true,
   },
   {
-    name: 'Pro',
-    price: 'Custom',
-    period: '',
-    desc: 'For larger portfolios, teams, and special pricing requests.',
+    name: 'Professional',
+    price: '€189',
+    period: '/month',
+    desc: 'For larger portfolios with more documents, checks, and reporting needs.',
     features: [
-      'Unlimited properties',
-      'Unlimited units per property',
-      'Everything in Growth',
+      'Up to 75 units',
+      'Everything in Starter',
       'Multi-user access',
-      'Special price on request',
       'Custom report builder',
       'Personal onboarding',
       'Data export & backup',
     ],
-    cta: 'Request Special Price',
+    cta: 'Request Access',
+    href: '/contact',
+    highlight: false,
+  },
+  {
+    name: 'Custom',
+    price: 'From €299',
+    period: '/month',
+    desc: 'For portfolios above 75 units, teams, and custom operating needs.',
+    features: [
+      'From 75+ units',
+      'Everything in Professional',
+      'Custom onboarding',
+      'Portfolio migration support',
+      'Advanced report setup',
+      'Priority support',
+    ],
+    cta: 'Request Custom Price',
     href: '/contact',
     highlight: false,
   },
@@ -110,11 +123,11 @@ const comparisons = [
 
 /* ── FAQ ────────────────────────────────────────────────── */
 const faqs = [
-  { q: 'Is Domo really free?', a: 'Yes. The Starter plan is free forever for up to 3 properties with unlimited units. No credit card required.' },
-  { q: 'Can I import my existing data?', a: 'Yes. You can import properties, tenants, and financial data from spreadsheets. Our team can help with migration on Professional and Business plans.' },
+  { q: 'Is Domo really free?', a: 'Yes. The Freemium plan is free forever for up to 5 units. No credit card required.' },
+  { q: 'Can I import my existing data?', a: 'Yes. You can import properties, tenants, and financial data from spreadsheets. Our team can help with migration on Professional and Custom plans.' },
   { q: 'Is my data secure?', a: 'All data is encrypted at rest and in transit. We use enterprise-grade infrastructure with 99.9% uptime and daily backups.' },
   { q: 'Do you support commercial properties?', a: 'Yes. Domo works for residential, commercial, and mixed-use properties. Each unit can have its own contract type and rent structure.' },
-  { q: 'Can multiple people access my account?', a: 'Multi-user access is available on the Business plan. Each user gets their own login with role-based permissions.' },
+  { q: 'Can multiple people access my account?', a: 'Multi-user access is available on the Professional and Custom plans. Each user can have their own login with role-based permissions.' },
 ]
 
 export default function Landing() {
@@ -346,9 +359,9 @@ export default function Landing() {
           <div className="text-center mb-16">
             <p className="text-sm font-semibold text-brand-600 uppercase tracking-wide mb-3">Pricing</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Simple Pricing. No Surprises.</h2>
-            <p className="text-lg text-gray-500">Every plan includes unlimited units per property. Only pay for the number of properties you manage.</p>
+            <p className="text-lg text-gray-500">Start free, then scale by the number of units you manage.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {plans.map(p => (
               <div key={p.name} className={`rounded-xl border p-6 flex flex-col ${p.highlight ? 'bg-white border-brand-600 ring-1 ring-brand-600 shadow-xl relative' : 'bg-white border-gray-200'}`}>
                 {p.highlight && <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-600 text-white text-xs font-semibold px-3 py-1 rounded-full">Most Popular</div>}
@@ -379,7 +392,7 @@ export default function Landing() {
               </div>
             ))}
           </div>
-          <p className="text-center text-sm text-gray-400 mt-8">All prices excl. VAT. Growth plan starts at €59 and may increase later as the product expands.</p>
+          <p className="text-center text-sm text-gray-400 mt-8">All prices excl. VAT. Custom plans start from €299/month for portfolios above 75 units.</p>
         </div>
       </section>
 
@@ -458,7 +471,7 @@ export default function Landing() {
               Start for Free <ArrowRight size={18} />
             </Link>
           </div>
-          <p className="mt-5 text-sm text-brand-300">Free forever for up to 3 properties · No credit card required</p>
+          <p className="mt-5 text-sm text-brand-300">Free forever for up to 5 units · No credit card required</p>
         </div>
       </section>
 

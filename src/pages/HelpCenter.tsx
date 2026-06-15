@@ -52,7 +52,7 @@ export default function HelpCenter() {
             <Mail size={24} className="text-brand-200 mb-4" />
             <h2 className="text-2xl font-bold mb-4">Need more help?</h2>
             <p className="text-brand-200 leading-relaxed mb-6">
-              If you want a walkthrough, have a portfolio-specific question, or want to discuss Growth or Pro pricing, contact the Domo team.
+              If you want a walkthrough, have a portfolio-specific question, or want to discuss Starter, Professional, or Custom pricing, contact the Domo team.
             </p>
             <Link to="/contact" className="inline-flex items-center gap-2 bg-white text-brand-700 px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-brand-50 transition">
               Contact support <ArrowRight size={16} />

@@ -28,11 +28,11 @@ export default function Register() {
             </p>
 
             <div className="bg-white rounded-2xl border border-gray-200 p-6">
-              <h2 className="font-semibold text-gray-900 mb-4">Starter includes</h2>
+              <h2 className="font-semibold text-gray-900 mb-4">Freemium includes</h2>
               <div className="space-y-3">
                 {[
-                  'Free account for up to 3 properties',
-                  'Unlimited units per property',
+                  'Free account for up to 5 units',
+                  'Property and unit records',
                   'Rent, contract, and document structure',
                   'Upgrade later when the portfolio grows',
                 ].map(item => (
@@ -92,9 +92,10 @@ export default function Register() {
                   name="portfolio"
                   className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500"
                 >
-                  <option>1-3 properties</option>
-                  <option>4-20 properties</option>
-                  <option>20+ properties</option>
+                  <option>1-5 units</option>
+                  <option>6-20 units</option>
+                  <option>21-75 units</option>
+                  <option>75+ units</option>
                   <option>Property manager / team</option>
                 </select>
               </label>

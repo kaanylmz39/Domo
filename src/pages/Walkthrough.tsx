@@ -17,7 +17,7 @@ const steps = [
   {
     number: '01',
     icon: BarChart3,
-    title: 'Start in the Cockpit',
+    title: 'Get instant overview',
     text: 'The Cockpit gives a fast overview of the portfolio: monthly income, yearly income, expenses, result, unpaid rent, portfolio summary, and recent activity.',
     see: ['Key income and expense cards', 'Portfolio summary', 'Recent activity overview'],
     link: '/app',
@@ -26,7 +26,7 @@ const steps = [
   {
     number: '02',
     icon: Building2,
-    title: 'Open the Portfolio',
+    title: 'Zoom into properties',
     text: 'The Portfolio page shows every property and lets owners expand buildings into individual units. This is where rent, tenants, and contract dates become visible per unit.',
     see: ['Properties and cities', 'Unit-level rent', 'Tenant and status per unit'],
     link: '/app/portfolio',
@@ -35,7 +35,7 @@ const steps = [
   {
     number: '03',
     icon: Building2,
-    title: 'Use the Property Dossier',
+    title: 'Centralise property records',
     text: 'Clicking a property opens the dossier. This keeps the long-term record together: overview, units, financials, contracts, documents, developments, and valuations.',
     see: ['Property details', 'Units and contracts', 'Valuation and document history'],
     link: '/app/portfolio',
@@ -44,7 +44,7 @@ const steps = [
   {
     number: '04',
     icon: Receipt,
-    title: 'Check Rent Control',
+    title: 'Track rent and follow-ups',
     text: 'Rent Control turns contracts into a monthly checklist. Expected rent comes from active contracts, while the user only marks whether rent was paid, partial, or unpaid.',
     see: ['Expected rent per tenant', 'Paid status', 'Payment date and notes'],
     link: '/app/rent-control',
@@ -53,7 +53,7 @@ const steps = [
   {
     number: '05',
     icon: Inbox,
-    title: 'Review the AI Inbox',
+    title: 'Approve AI suggestions',
     text: 'The AI Inbox is prepared for future automation. Today it shows a manual review workflow where files can be checked, renamed, categorized, and linked to a property.',
     see: ['Suggested property and category', 'Suggested file names', 'Approve and organize workflow'],
     link: '/app/ai-inbox',
@@ -62,7 +62,7 @@ const steps = [
   {
     number: '06',
     icon: FileText,
-    title: 'Use Reports and Settings',
+    title: 'Turn data into reports',
     text: 'Reports show previews for bank, tax, performance, unpaid rent, and valuation reports. Settings collect app information, categories, export placeholders, and reset options.',
     see: ['Report previews', 'Document and expense categories', 'Local data controls'],
     link: '/app/reports',
