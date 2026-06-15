@@ -7,6 +7,7 @@ import Blog from './pages/Blog'
 import Careers from './pages/Careers'
 import Contact from './pages/Contact'
 import HelpCenter from './pages/HelpCenter'
+import Login from './pages/Login'
 import Press from './pages/Press'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import TermsOfService from './pages/TermsOfService'
@@ -49,6 +50,7 @@ export default function App() {
       <Route path="/careers" element={<Careers />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/help" element={<HelpCenter />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/press" element={<Press />} />
       <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="/terms" element={<TermsOfService />} />

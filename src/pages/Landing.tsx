@@ -132,7 +132,7 @@ export default function Landing() {
             <Link to="/contact" className="hover:text-gray-900 transition">Contact</Link>
           </div>
           <div className="flex items-center gap-3">
-            <Link to="/app" className="hidden sm:inline-flex text-sm font-medium text-gray-600 hover:text-gray-900 transition">
+            <Link to="/login" className="hidden sm:inline-flex text-sm font-medium text-gray-600 hover:text-gray-900 transition">
               Log In
             </Link>
             <Link
