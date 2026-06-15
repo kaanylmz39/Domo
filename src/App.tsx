@@ -10,6 +10,7 @@ import HelpCenter from './pages/HelpCenter'
 import Login from './pages/Login'
 import Press from './pages/Press'
 import PrivacyPolicy from './pages/PrivacyPolicy'
+import Register from './pages/Register'
 import TermsOfService from './pages/TermsOfService'
 import WhyDomo from './pages/WhyDomo'
 import Cockpit from './pages/Cockpit'
@@ -53,6 +54,7 @@ export default function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/press" element={<Press />} />
       <Route path="/privacy" element={<PrivacyPolicy />} />
+      <Route path="/register" element={<Register />} />
       <Route path="/terms" element={<TermsOfService />} />
       <Route path="/why-domo" element={<WhyDomo />} />
       <Route path="/app/*" element={<DashboardLayout store={store} />} />

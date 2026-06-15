@@ -106,6 +106,10 @@ export default function Login() {
                 </p>
               </div>
             </div>
+
+            <p className="text-sm text-gray-500 text-center mt-6">
+              New to Domo? <Link to="/register" className="font-semibold text-brand-700 hover:text-brand-800">Create an account</Link>
+            </p>
           </div>
         </section>
       </main>
