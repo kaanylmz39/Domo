@@ -46,7 +46,7 @@ const plans = [
       'Mobile access',
     ],
     cta: 'Get Started Free',
-    href: '/register',
+    href: '/app',
     highlight: false,
   },
   {
@@ -136,7 +136,7 @@ export default function Landing() {
               Log In
             </Link>
             <Link
-              to="/register"
+              to="/app"
               className="bg-brand-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-brand-700 transition flex items-center gap-2"
             >
               Get Started <ArrowRight size={14} />
@@ -160,7 +160,7 @@ export default function Landing() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              to="/register"
+              to="/app"
               className="bg-brand-600 text-white px-8 py-3.5 rounded-xl text-base font-semibold hover:bg-brand-700 transition flex items-center gap-2 shadow-lg shadow-brand-600/20"
             >
               Start for Free <ChevronRight size={18} />
@@ -451,7 +451,7 @@ export default function Landing() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              to="/register"
+              to="/app"
               className="inline-flex items-center gap-2 bg-white text-brand-700 px-8 py-3.5 rounded-xl text-base font-semibold hover:bg-brand-50 transition shadow-lg"
             >
               Start for Free <ArrowRight size={18} />
