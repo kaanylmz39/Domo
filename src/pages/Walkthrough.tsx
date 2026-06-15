@@ -85,6 +85,115 @@ const concepts = [
   },
 ]
 
+function MiniVisual({ type }: { type: string }) {
+  if (type === 'cockpit') {
+    return (
+      <div className="rounded-xl border border-gray-200 bg-white p-3 shadow-sm">
+        <div className="grid grid-cols-2 gap-2 mb-3">
+          {['€ 12.850', '€ 154k', '€ 62k', '€ 91k'].map((value, index) => (
+            <div key={value} className="rounded-lg border border-gray-100 bg-gray-50 p-2">
+              <div className="h-1.5 w-12 rounded bg-gray-200 mb-2" />
+              <div className={`text-sm font-bold ${index === 2 ? 'text-red-500' : 'text-brand-700'}`}>{value}</div>
+            </div>
+          ))}
+        </div>
+        <div className="space-y-2">
+          <div className="h-2 rounded bg-brand-100 w-full" />
+          <div className="h-2 rounded bg-gray-100 w-4/5" />
+          <div className="h-2 rounded bg-gray-100 w-2/3" />
+        </div>
+      </div>
+    )
+  }
+
+  if (type === 'portfolio') {
+    return (
+      <div className="rounded-xl border border-gray-200 bg-white p-3 shadow-sm">
+        {[
+          ['Keizersgracht 274', '€ 2.150'],
+          ['Unit A', '€ 1.250'],
+          ['Unit B', '€ 900'],
+        ].map(([name, rent], index) => (
+          <div key={name} className={`flex items-center justify-between py-2 ${index > 0 ? 'pl-4 border-t border-gray-100' : ''}`}>
+            <div>
+              <div className="text-xs font-semibold text-gray-800">{name}</div>
+              <div className="text-[10px] text-gray-400">{index === 0 ? 'Amsterdam · building' : 'Rented · active contract'}</div>
+            </div>
+            <div className="text-xs font-bold text-brand-700">{rent}</div>
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  if (type === 'dossier') {
+    return (
+      <div className="rounded-xl border border-gray-200 bg-white p-3 shadow-sm">
+        <div className="flex gap-1.5 mb-3 overflow-hidden">
+          {['Overview', 'Units', 'Contracts'].map(tab => (
+            <div key={tab} className={`rounded-md px-2 py-1 text-[10px] font-medium ${tab === 'Overview' ? 'bg-brand-100 text-brand-800' : 'bg-gray-100 text-gray-500'}`}>{tab}</div>
+          ))}
+        </div>
+        <div className="grid grid-cols-2 gap-2">
+          <div className="rounded-lg bg-gray-50 p-2">
+            <div className="h-2 rounded bg-gray-200 mb-2" />
+            <div className="h-2 rounded bg-gray-100 w-2/3" />
+          </div>
+          <div className="rounded-lg bg-gray-50 p-2">
+            <div className="h-2 rounded bg-gray-200 mb-2" />
+            <div className="h-2 rounded bg-brand-100 w-3/4" />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (type === 'rent') {
+    return (
+      <div className="rounded-xl border border-gray-200 bg-white p-3 shadow-sm">
+        {[
+          ['Jan de Vries', 'Paid', 'text-brand-700 bg-brand-50'],
+          ['Sophie Bakker', 'Partial', 'text-amber-700 bg-amber-50'],
+          ['Cafe de Witte', 'Unpaid', 'text-red-600 bg-red-50'],
+        ].map(([tenant, status, style]) => (
+          <div key={tenant} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
+            <span className="text-xs font-medium text-gray-700">{tenant}</span>
+            <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${style}`}>{status}</span>
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  if (type === 'inbox') {
+    return (
+      <div className="rounded-xl border border-gray-200 bg-white p-3 shadow-sm">
+        <div className="rounded-lg border border-dashed border-brand-200 bg-brand-50 p-3 mb-3">
+          <div className="text-xs font-semibold text-brand-800">scan_3948_final.pdf</div>
+          <div className="text-[10px] text-brand-700 mt-1">Suggested rename ready</div>
+        </div>
+        <div className="h-2 rounded bg-gray-100 mb-2" />
+        <div className="h-2 rounded bg-gray-100 w-3/4 mb-3" />
+        <div className="rounded-md bg-brand-600 text-white text-center text-[10px] font-semibold py-1.5">Approve</div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="rounded-xl border border-gray-200 bg-white p-3 shadow-sm">
+      <div className="grid grid-cols-3 gap-2 mb-3">
+        {[55, 78, 42].map(height => (
+          <div key={height} className="flex items-end h-16 rounded-lg bg-gray-50 px-2">
+            <div className="w-full rounded-t bg-brand-400" style={{ height: `${height}%` }} />
+          </div>
+        ))}
+      </div>
+      <div className="h-2 rounded bg-gray-100 w-full mb-2" />
+      <div className="h-2 rounded bg-gray-100 w-2/3" />
+    </div>
+  )
+}
+
 export default function Walkthrough() {
   return (
     <div className="min-h-screen bg-white">
@@ -155,8 +264,8 @@ export default function Walkthrough() {
           </div>
 
           <div className="space-y-5">
-            {steps.map(step => (
-              <div key={step.title} className="bg-white rounded-2xl border border-gray-200 p-5 sm:p-6 grid grid-cols-1 lg:grid-cols-[0.7fr_1.4fr_0.9fr] gap-6 items-start">
+            {steps.map((step, index) => (
+              <div key={step.title} className="bg-white rounded-2xl border border-gray-200 p-5 sm:p-6 grid grid-cols-1 lg:grid-cols-[0.55fr_1.1fr_1fr_0.9fr] gap-6 items-start">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-xl bg-brand-50 text-brand-700 flex items-center justify-center font-bold">
                     {step.number}
@@ -168,6 +277,8 @@ export default function Walkthrough() {
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">{step.title}</h3>
                   <p className="text-sm text-gray-500 leading-relaxed">{step.text}</p>
                 </div>
+
+                <MiniVisual type={['cockpit', 'portfolio', 'dossier', 'rent', 'inbox', 'reports'][index]} />
 
                 <div className="bg-gray-50 rounded-xl border border-gray-200 p-4">
                   <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">What you see</p>
