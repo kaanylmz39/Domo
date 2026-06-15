@@ -13,6 +13,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy'
 import Register from './pages/Register'
 import TermsOfService from './pages/TermsOfService'
 import WhyDomo from './pages/WhyDomo'
+import Walkthrough from './pages/Walkthrough'
 import Cockpit from './pages/Cockpit'
 import Portfolio from './pages/Portfolio'
 import PropertyDetail from './pages/PropertyDetail'
@@ -56,6 +57,7 @@ export default function App() {
       <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="/register" element={<Register />} />
       <Route path="/terms" element={<TermsOfService />} />
+      <Route path="/walkthrough" element={<Walkthrough />} />
       <Route path="/why-domo" element={<WhyDomo />} />
       <Route path="/app/*" element={<DashboardLayout store={store} />} />
     </Routes>

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 
 interface Props {
-  active?: 'about' | 'blog' | 'careers' | 'press' | 'contact' | 'why' | 'login' | 'register'
+  active?: 'about' | 'blog' | 'careers' | 'press' | 'contact' | 'why' | 'walkthrough' | 'login' | 'register'
 }
 
 const linkClass = (isActive: boolean) =>
@@ -15,11 +15,12 @@ export default function MarketingNav({ active }: Props) {
         <Link to="/">
           <img src={import.meta.env.BASE_URL + 'logo-light.svg'} alt="Domo" className="h-16 object-contain" />
         </Link>
-        <div className="hidden md:flex items-center gap-7 text-sm font-medium">
+        <div className="hidden md:flex items-center gap-5 text-sm font-medium">
           <Link to="/#features" className={linkClass(false)}>Features</Link>
           <Link to="/#pricing" className={linkClass(false)}>Pricing</Link>
           <Link to="/about" className={linkClass(active === 'about')}>About</Link>
           <Link to="/why-domo" className={linkClass(active === 'why')}>Why Domo</Link>
+          <Link to="/walkthrough" className={linkClass(active === 'walkthrough')}>Walkthrough</Link>
           <Link to="/contact" className={linkClass(active === 'contact')}>Contact</Link>
         </div>
         <div className="flex items-center gap-3">

@@ -124,11 +124,12 @@ export default function Landing() {
       <nav className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md border-b border-gray-100 z-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
           <img src={import.meta.env.BASE_URL + 'logo-light.svg'} alt="Domo" className="h-16 object-contain" />
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+          <div className="hidden md:flex items-center gap-5 text-sm font-medium text-gray-600">
             <a href="#features" className="hover:text-gray-900 transition">Features</a>
             <a href="#pricing" className="hover:text-gray-900 transition">Pricing</a>
             <Link to="/about" className="hover:text-gray-900 transition">About</Link>
             <Link to="/why-domo" className="hover:text-gray-900 transition">Why Domo</Link>
+            <Link to="/walkthrough" className="hover:text-gray-900 transition">Walkthrough</Link>
             <Link to="/contact" className="hover:text-gray-900 transition">Contact</Link>
           </div>
           <div className="flex items-center gap-3">
@@ -477,6 +478,7 @@ export default function Landing() {
                 <li><a href="#features" className="hover:text-white transition">Features</a></li>
                 <li><a href="#pricing" className="hover:text-white transition">Pricing</a></li>
                 <li><Link to="/why-domo" className="hover:text-white transition">Why Domo</Link></li>
+                <li><Link to="/walkthrough" className="hover:text-white transition">Walkthrough</Link></li>
                 <li><Link to="/contact" className="hover:text-white transition">Contact</Link></li>
                 <li><Link to="/app" className="hover:text-white transition">Dashboard</Link></li>
               </ul>
