@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   ArrowRight,
@@ -6,7 +7,10 @@ import {
   Check,
   FileText,
   Inbox,
+  MonitorPlay,
+  Pause,
   PieChart,
+  Play,
   Receipt,
   Settings,
 } from 'lucide-react'
@@ -82,6 +86,45 @@ const concepts = [
   {
     title: 'Archive plus cockpit',
     text: 'Domo is both a clean archive and an operating cockpit: records stay organized, while the owner can still make decisions quickly.',
+  },
+]
+
+const tourScenes = [
+  {
+    title: 'Cockpit overview',
+    subtitle: 'Start with the numbers that matter most.',
+    type: 'cockpit',
+    points: ['Monthly and yearly income', 'Expenses and result', 'Recent portfolio activity'],
+  },
+  {
+    title: 'Portfolio view',
+    subtitle: 'Move from portfolio level into each property and unit.',
+    type: 'portfolio',
+    points: ['Buildings and single units', 'Rent separated per unit', 'Tenant and contract visibility'],
+  },
+  {
+    title: 'Property dossier',
+    subtitle: 'Keep the full property archive in one structured place.',
+    type: 'dossier',
+    points: ['Overview and unit details', 'Contracts and documents', 'Valuations and developments'],
+  },
+  {
+    title: 'Rent control',
+    subtitle: 'Follow up monthly rent without rebuilding a spreadsheet.',
+    type: 'rent',
+    points: ['Expected rent from contracts', 'Paid, partial, and unpaid status', 'Payment dates and notes'],
+  },
+  {
+    title: 'AI inbox',
+    subtitle: 'Review suggested document names and categories before filing.',
+    type: 'inbox',
+    points: ['Mock upload workflow', 'Suggested property and type', 'Approval before organizing'],
+  },
+  {
+    title: 'Reports',
+    subtitle: 'Turn clean records into useful owner, bank, and tax views.',
+    type: 'reports',
+    points: ['Bank and tax previews', 'Unpaid rent overview', 'Valuation summaries'],
   },
 ]
 
@@ -194,6 +237,148 @@ function MiniVisual({ type }: { type: string }) {
   )
 }
 
+function ProductTourVideo() {
+  const [activeScene, setActiveScene] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(true)
+  const scene = tourScenes[activeScene]
+
+  useEffect(() => {
+    if (!isPlaying) return
+
+    const timer = window.setInterval(() => {
+      setActiveScene(current => (current + 1) % tourScenes.length)
+    }, 3600)
+
+    return () => window.clearInterval(timer)
+  }, [isPlaying])
+
+  return (
+    <section className="max-w-6xl mx-auto mb-20">
+      <div className="text-center mb-10">
+        <p className="text-sm font-semibold text-brand-600 uppercase tracking-wide mb-3">Product video</p>
+        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Watch the Domo flow in one minute</h2>
+        <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+          A short guided preview shows how a client moves from overview to properties, rent control, documents, and reports.
+        </p>
+      </div>
+
+      <div className="rounded-2xl border border-gray-200 bg-gray-950 p-3 sm:p-4 shadow-2xl">
+        <div className="rounded-xl overflow-hidden bg-white">
+          <div className="flex items-center justify-between border-b border-gray-200 bg-gray-50 px-4 py-3">
+            <div className="flex items-center gap-3">
+              <div className="flex gap-1.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
+                <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
+                <span className="h-2.5 w-2.5 rounded-full bg-brand-500" />
+              </div>
+              <span className="hidden sm:inline text-xs font-medium text-gray-400">domo.nl/walkthrough</span>
+            </div>
+            <button
+              type="button"
+              onClick={() => setIsPlaying(value => !value)}
+              className="inline-flex items-center gap-2 rounded-lg bg-gray-900 px-3 py-1.5 text-xs font-semibold text-white hover:bg-gray-800 transition"
+            >
+              {isPlaying ? <Pause size={13} /> : <Play size={13} />}
+              {isPlaying ? 'Pause' : 'Play'}
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_0.75fr]">
+            <div className="min-h-[360px] bg-gradient-to-br from-brand-900 via-gray-900 to-gray-950 p-5 sm:p-8 text-white flex flex-col justify-between">
+              <div className="flex items-center justify-between gap-4 mb-8">
+                <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-semibold text-brand-100">
+                  <MonitorPlay size={14} />
+                  Scene {activeScene + 1} of {tourScenes.length}
+                </div>
+                <div className="hidden sm:flex items-center gap-1.5">
+                  {tourScenes.map((item, index) => (
+                    <button
+                      key={item.title}
+                      type="button"
+                      onClick={() => {
+                        setActiveScene(index)
+                        setIsPlaying(false)
+                      }}
+                      className={`h-2 rounded-full transition-all ${index === activeScene ? 'w-8 bg-brand-300' : 'w-2 bg-white/30 hover:bg-white/50'}`}
+                      aria-label={`Show ${item.title}`}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-[0.95fr_1.05fr] gap-8 items-center">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-wide text-brand-200 mb-3">Guided walkthrough</p>
+                  <h3 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">{scene.title}</h3>
+                  <p className="text-brand-100 leading-relaxed mb-6">{scene.subtitle}</p>
+                  <div className="space-y-3">
+                    {scene.points.map(point => (
+                      <div key={point} className="flex items-center gap-3 text-sm text-white/90">
+                        <span className="h-6 w-6 rounded-lg bg-brand-400/20 text-brand-200 flex items-center justify-center">
+                          <Check size={14} />
+                        </span>
+                        {point}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="rounded-2xl bg-white/95 p-4 shadow-xl">
+                  <MiniVisual type={scene.type} />
+                </div>
+              </div>
+
+              <div className="mt-8 grid grid-cols-6 gap-2">
+                {tourScenes.map((item, index) => (
+                  <button
+                    key={item.title}
+                    type="button"
+                    onClick={() => {
+                      setActiveScene(index)
+                      setIsPlaying(false)
+                    }}
+                    className="h-1.5 rounded-full bg-white/20 overflow-hidden"
+                    aria-label={`Jump to ${item.title}`}
+                  >
+                    <span className={`block h-full rounded-full bg-brand-300 transition-all ${index <= activeScene ? 'w-full' : 'w-0'}`} />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-white p-5 sm:p-6">
+              <h3 className="font-semibold text-gray-900 mb-4">What the video covers</h3>
+              <div className="space-y-2">
+                {tourScenes.map((item, index) => (
+                  <button
+                    key={item.title}
+                    type="button"
+                    onClick={() => {
+                      setActiveScene(index)
+                      setIsPlaying(false)
+                    }}
+                    className={`w-full text-left rounded-xl border p-3 transition ${
+                      index === activeScene
+                        ? 'border-brand-300 bg-brand-50'
+                        : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-sm font-semibold text-gray-900">{item.title}</span>
+                      <span className="text-xs font-bold text-brand-700">{String(index + 1).padStart(2, '0')}</span>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-1">{item.subtitle}</p>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default function Walkthrough() {
   return (
     <div className="min-h-screen bg-white">
@@ -217,6 +402,8 @@ export default function Walkthrough() {
             </Link>
           </div>
         </section>
+
+        <ProductTourVideo />
 
         <section className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 mb-20">
           <div className="bg-gray-50 rounded-2xl border border-gray-200 p-6 sm:p-8">
