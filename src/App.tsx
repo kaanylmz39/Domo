@@ -25,7 +25,7 @@ import Settings from './pages/Settings'
 
 function DashboardLayout({ store }: { store: ReturnType<typeof useStore> }) {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gray-50">
       <Sidebar />
       <main className="pt-16 px-4 pb-8 lg:pt-8 lg:pl-68 lg:pr-8 lg:ml-60">
         <Routes>
