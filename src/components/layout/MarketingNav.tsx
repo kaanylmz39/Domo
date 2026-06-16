@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, ChevronDown, Menu, X } from 'lucide-react'
 
 interface Props {
-  active?: 'about' | 'blog' | 'careers' | 'press' | 'contact' | 'why' | 'walkthrough' | 'login' | 'register' | 'help' | 'privacy' | 'terms'
+  active?: 'about' | 'blog' | 'careers' | 'press' | 'pricing' | 'contact' | 'why' | 'walkthrough' | 'login' | 'register' | 'help' | 'privacy' | 'terms'
 }
 
 const linkClass = (isActive: boolean) =>
@@ -20,7 +20,7 @@ const dropdownLinkClass = (isActive: boolean) =>
 
 export default function MarketingNav({ active }: Props) {
   const [mobileOpen, setMobileOpen] = useState(false)
-  const productActive = active === 'why' || active === 'walkthrough'
+  const productActive = active === 'pricing' || active === 'why' || active === 'walkthrough'
   const companyActive = active === 'about' || active === 'blog' || active === 'careers' || active === 'press'
   const supportActive = active === 'contact' || active === 'help' || active === 'privacy' || active === 'terms'
   const closeMobile = () => setMobileOpen(false)
@@ -39,7 +39,7 @@ export default function MarketingNav({ active }: Props) {
               Product <ChevronDown size={14} />
             </button>
             <div className={dropdownPanelClass}>
-              <Link to="/#pricing" className={dropdownLinkClass(false)}>Pricing</Link>
+              <Link to="/pricing" className={dropdownLinkClass(active === 'pricing')}>Pricing</Link>
               <Link to="/why-domo" className={dropdownLinkClass(active === 'why')}>Why Domo</Link>
               <Link to="/walkthrough" className={dropdownLinkClass(active === 'walkthrough')}>Walkthrough</Link>
               <Link to="/app" className={dropdownLinkClass(false)}>Open Dashboard</Link>
@@ -99,7 +99,7 @@ export default function MarketingNav({ active }: Props) {
 
             <div className="rounded-xl border border-gray-200 p-2">
               <p className="px-3 py-2 text-xs font-semibold uppercase tracking-wide text-gray-400">Product</p>
-              <Link to="/#pricing" onClick={closeMobile} className={dropdownLinkClass(false)}>Pricing</Link>
+              <Link to="/pricing" onClick={closeMobile} className={dropdownLinkClass(active === 'pricing')}>Pricing</Link>
               <Link to="/why-domo" onClick={closeMobile} className={dropdownLinkClass(active === 'why')}>Why Domo</Link>
               <Link to="/walkthrough" onClick={closeMobile} className={dropdownLinkClass(active === 'walkthrough')}>Walkthrough</Link>
               <Link to="/app" onClick={closeMobile} className={dropdownLinkClass(false)}>Open Dashboard</Link>

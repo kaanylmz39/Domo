@@ -9,6 +9,7 @@ import Contact from './pages/Contact'
 import HelpCenter from './pages/HelpCenter'
 import Login from './pages/Login'
 import Press from './pages/Press'
+import Pricing from './pages/Pricing'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import Register from './pages/Register'
 import TermsOfService from './pages/TermsOfService'
@@ -54,6 +55,7 @@ export default function App() {
       <Route path="/help" element={<HelpCenter />} />
       <Route path="/login" element={<Login />} />
       <Route path="/press" element={<Press />} />
+      <Route path="/pricing" element={<Pricing />} />
       <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="/register" element={<Register />} />
       <Route path="/terms" element={<TermsOfService />} />

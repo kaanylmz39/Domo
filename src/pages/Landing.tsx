@@ -470,7 +470,7 @@ export default function Landing() {
               <h4 className="text-white font-semibold text-sm mb-4">Product</h4>
               <ul className="space-y-2.5 text-sm">
                 <li><a href="#features" className="hover:text-white transition">Features</a></li>
-                <li><a href="#pricing" className="hover:text-white transition">Pricing</a></li>
+                <li><Link to="/pricing" className="hover:text-white transition">Pricing</Link></li>
                 <li><Link to="/why-domo" className="hover:text-white transition">Why Domo</Link></li>
                 <li><Link to="/walkthrough" className="hover:text-white transition">Walkthrough</Link></li>
                 <li><Link to="/contact" className="hover:text-white transition">Contact</Link></li>
