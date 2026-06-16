@@ -34,6 +34,9 @@ export default function Cockpit({ store }: Props) {
   const occupancyRate = units.length > 0 ? Math.round((rentedUnits.length / units.length) * 100) : 0
   const totalWoz = properties.reduce((sum, property) => sum + property.wozValue, 0)
   const expenseRatio = yearlyIncome > 0 ? Math.round((yearlyExpenses / yearlyIncome) * 100) : 0
+  const donutRadius = 44
+  const donutCircumference = 2 * Math.PI * donutRadius
+  const rentedDonutLength = units.length > 0 ? donutCircumference * (rentedUnits.length / units.length) : 0
 
   const recentActivity = [
     { text: 'Rent received - Jan de Vries, Keizersgracht 274', date: '2026-05-01', type: 'Rent' },
@@ -142,26 +145,80 @@ export default function Cockpit({ store }: Props) {
         <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-6">
           <h2 className="text-base font-bold text-gray-950">Portfolio composition</h2>
           <p className="mt-1 text-sm text-gray-500">Unit availability and long-term asset value.</p>
-          <div className="mt-6 space-y-4">
-            <div>
-              <div className="mb-2 flex justify-between text-sm">
-                <span className="font-medium text-gray-600">Rented units</span>
-                <span className="font-bold text-gray-950">{rentedUnits.length}/{units.length}</span>
-              </div>
-              <div className="h-2 overflow-hidden rounded-full bg-gray-100">
-                <div className="h-full rounded-full bg-brand-600" style={{ width: `${occupancyRate}%` }} />
+          <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-[0.85fr_1fr] xl:grid-cols-1 2xl:grid-cols-[0.85fr_1fr]">
+            <div className="flex items-center justify-center">
+              <div className="relative h-36 w-36">
+                <svg viewBox="0 0 120 120" className="h-36 w-36 -rotate-90">
+                  <circle
+                    cx="60"
+                    cy="60"
+                    r={donutRadius}
+                    fill="none"
+                    stroke="#f3f4f6"
+                    strokeWidth="16"
+                  />
+                  <circle
+                    cx="60"
+                    cy="60"
+                    r={donutRadius}
+                    fill="none"
+                    stroke="#d1d5db"
+                    strokeWidth="16"
+                    strokeDasharray={`${donutCircumference} ${donutCircumference}`}
+                    strokeDashoffset="0"
+                  />
+                  <circle
+                    cx="60"
+                    cy="60"
+                    r={donutRadius}
+                    fill="none"
+                    stroke="#15803d"
+                    strokeWidth="16"
+                    strokeLinecap="round"
+                    strokeDasharray={`${rentedDonutLength} ${donutCircumference}`}
+                    strokeDashoffset="0"
+                  />
+                </svg>
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+                  <span className="text-2xl font-bold text-gray-950">{occupancyRate}%</span>
+                  <span className="text-[11px] font-semibold uppercase tracking-wide text-gray-400">occupied</span>
+                </div>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-3">
-              <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
-                <Home size={18} className="mb-3 text-brand-700" />
-                <div className="text-xl font-bold text-gray-950">{unavailableUnits.length}</div>
-                <div className="text-xs text-gray-500">Empty / unavailable</div>
+
+            <div className="space-y-4">
+              <div>
+                <div className="mb-2 flex justify-between text-sm">
+                  <span className="font-medium text-gray-600">Rented units</span>
+                  <span className="font-bold text-gray-950">{rentedUnits.length}/{units.length}</span>
+                </div>
+                <div className="h-2 overflow-hidden rounded-full bg-gray-100">
+                  <div className="h-full rounded-full bg-brand-600" style={{ width: `${occupancyRate}%` }} />
+                </div>
               </div>
-              <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
-                <Banknote size={18} className="mb-3 text-brand-700" />
-                <div className="text-xl font-bold text-gray-950">{eur(totalWoz)}</div>
-                <div className="text-xs text-gray-500">Total WOZ value</div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
+                  <Home size={18} className="mb-3 text-brand-700" />
+                  <div className="text-xl font-bold text-gray-950">{unavailableUnits.length}</div>
+                  <div className="text-xs text-gray-500">Empty / unavailable</div>
+                </div>
+                <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
+                  <Banknote size={18} className="mb-3 text-brand-700" />
+                  <div className="text-xl font-bold text-gray-950">{eur(totalWoz)}</div>
+                  <div className="text-xs text-gray-500">Total WOZ value</div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                <div className="flex items-center gap-2 text-gray-600">
+                  <span className="h-2.5 w-2.5 rounded-full bg-brand-600" />
+                  Rented
+                </div>
+                <div className="flex items-center gap-2 text-gray-600">
+                  <span className="h-2.5 w-2.5 rounded-full bg-gray-300" />
+                  Other
+                </div>
               </div>
             </div>
           </div>
