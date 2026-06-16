@@ -4,6 +4,7 @@ import {
   ChevronRight, Check, ArrowRight, Star, Users, Globe,
   Zap, Lock, Clock, TrendingUp, Home, PieChart,
 } from 'lucide-react'
+import ProductTourVideo from '../components/marketing/ProductTourVideo'
 
 /* ── Features ───────────────────────────────────────────── */
 const features = [
@@ -260,6 +261,9 @@ export default function Landing() {
           </div>
         </div>
       </section>
+
+      {/* ── Product tour ────────────────────────────────── */}
+      <ProductTourVideo showIntro={false} className="pb-20 px-4 sm:px-6" />
 
       {/* ── Social proof bar ────────────────────────────── */}
       <section className="py-12 px-4 sm:px-6 border-y border-gray-100 bg-gray-50/50">
