@@ -13,7 +13,8 @@
           var params = new URLSearchParams(q);
           var p = params.get('p');
           if (p) {
-            window.history.replaceState(null, '', window.location.pathname + p + window.location.hash);
+            var basePath = window.location.pathname.replace(/\/$/, '');
+            window.history.replaceState(null, '', basePath + p + window.location.hash);
           }
         }
       })();

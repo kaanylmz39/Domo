@@ -39,7 +39,7 @@ export default function MarketingNav({ active }: Props) {
               Product <ChevronDown size={14} />
             </button>
             <div className={dropdownPanelClass}>
-              <Link to="/pricing" className={dropdownLinkClass(active === 'pricing')}>Pricing</Link>
+              <Link to="/pricing" className={dropdownLinkClass(active === 'pricing')}>Pricing & onboarding</Link>
               <Link to="/why-domo" className={dropdownLinkClass(active === 'why')}>Why Domo</Link>
               <Link to="/walkthrough" className={dropdownLinkClass(active === 'walkthrough')}>Walkthrough</Link>
               <Link to="/app" className={dropdownLinkClass(false)}>Open Dashboard</Link>
@@ -99,7 +99,7 @@ export default function MarketingNav({ active }: Props) {
 
             <div className="rounded-xl border border-gray-200 p-2">
               <p className="px-3 py-2 text-xs font-semibold uppercase tracking-wide text-gray-400">Product</p>
-              <Link to="/pricing" onClick={closeMobile} className={dropdownLinkClass(active === 'pricing')}>Pricing</Link>
+              <Link to="/pricing" onClick={closeMobile} className={dropdownLinkClass(active === 'pricing')}>Pricing & onboarding</Link>
               <Link to="/why-domo" onClick={closeMobile} className={dropdownLinkClass(active === 'why')}>Why Domo</Link>
               <Link to="/walkthrough" onClick={closeMobile} className={dropdownLinkClass(active === 'walkthrough')}>Walkthrough</Link>
               <Link to="/app" onClick={closeMobile} className={dropdownLinkClass(false)}>Open Dashboard</Link>

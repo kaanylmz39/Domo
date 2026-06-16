@@ -240,7 +240,7 @@ export default function Landing() {
       </section>
 
       {/* ── Product tour ────────────────────────────────── */}
-      <ProductTourVideo showIntro={false} className="pb-20 px-4 sm:px-6" />
+      <ProductTourVideo showIntro={false} className="pt-8 pb-24 sm:pt-12 sm:pb-28 px-4 sm:px-6" />
 
       {/* ── Social proof bar ────────────────────────────── */}
       <section className="py-12 px-4 sm:px-6 border-y border-gray-100 bg-gray-50/50">
@@ -374,6 +374,11 @@ export default function Landing() {
             ))}
           </div>
           <p className="text-center text-sm text-gray-400 mt-8">All prices excl. VAT. Custom plans start from €299/month for portfolios above 75 units.</p>
+          <div className="mt-6 text-center">
+            <Link to="/pricing" className="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-800 px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-gray-50 transition">
+              View full pricing and onboarding <ArrowRight size={16} />
+            </Link>
+          </div>
         </div>
       </section>
 
