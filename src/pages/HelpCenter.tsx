@@ -13,7 +13,7 @@ const topics = [
 export default function HelpCenter() {
   return (
     <div className="min-h-screen bg-white">
-      <MarketingNav />
+      <MarketingNav active="help" />
 
       <main className="pt-32 pb-20 px-4 sm:px-6">
         <section className="max-w-4xl mx-auto text-center mb-16">

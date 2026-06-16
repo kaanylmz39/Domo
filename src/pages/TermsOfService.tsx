@@ -33,7 +33,7 @@ const sections = [
 export default function TermsOfService() {
   return (
     <div className="min-h-screen bg-white">
-      <MarketingNav />
+      <MarketingNav active="terms" />
 
       <main className="pt-32 pb-20 px-4 sm:px-6">
         <section className="max-w-3xl mx-auto mb-12">
