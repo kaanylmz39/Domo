@@ -1,4 +1,5 @@
-import { Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Sidebar from './components/layout/Sidebar'
 import { useStore } from './store'
 import Landing from './pages/Landing'
@@ -23,6 +24,23 @@ import AIInbox from './pages/AIInbox'
 import Reports from './pages/Reports'
 import Settings from './pages/Settings'
 
+function ScrollToTop() {
+  const { pathname, hash } = useLocation()
+
+  useEffect(() => {
+    if (hash) {
+      window.requestAnimationFrame(() => {
+        document.querySelector(hash)?.scrollIntoView({ block: 'start' })
+      })
+      return
+    }
+
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  }, [pathname, hash])
+
+  return null
+}
+
 function DashboardLayout({ store }: { store: ReturnType<typeof useStore> }) {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -46,22 +64,25 @@ export default function App() {
   const store = useStore()
 
   return (
-    <Routes>
-      <Route path="/" element={<Landing />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/blog" element={<Blog />} />
-      <Route path="/careers" element={<Careers />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/help" element={<HelpCenter />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/press" element={<Press />} />
-      <Route path="/pricing" element={<Pricing />} />
-      <Route path="/privacy" element={<PrivacyPolicy />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/terms" element={<TermsOfService />} />
-      <Route path="/walkthrough" element={<Walkthrough />} />
-      <Route path="/why-domo" element={<WhyDomo />} />
-      <Route path="/app/*" element={<DashboardLayout store={store} />} />
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/careers" element={<Careers />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/help" element={<HelpCenter />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/press" element={<Press />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/terms" element={<TermsOfService />} />
+        <Route path="/walkthrough" element={<Walkthrough />} />
+        <Route path="/why-domo" element={<WhyDomo />} />
+        <Route path="/app/*" element={<DashboardLayout store={store} />} />
+      </Routes>
+    </>
   )
 }
