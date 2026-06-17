@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="620 380 760 1120">
-  <g fill="none" stroke="#FFFFFF" stroke-width="34" stroke-linecap="butt" stroke-linejoin="round">
+  <g fill="none" stroke="#93b489" stroke-width="34" stroke-linecap="butt" stroke-linejoin="round">
     <!-- 1. Outer isometric cube outline -->
     <path d="M 1000 418 L 707 592 L 707 908 L 1000 1079 L 1286 908 L 1286 592 Z"/>
     <!-- 2. Top inner V / diamond bottom -->
@@ -13,5 +13,5 @@
     <!-- 6. Lower internal diagonal -->
     <line x1="879" y1="1006" x2="1286" y2="758"/>
   </g>
-  <text x="1000" y="1430" text-anchor="middle" font-family="'Montserrat','Poppins','Arial Black',sans-serif" font-weight="800" font-size="190" letter-spacing="18" fill="#FFFFFF">DOMO</text>
+  <text x="1000" y="1430" text-anchor="middle" font-family="'Montserrat','Poppins','Arial Black',sans-serif" font-weight="800" font-size="190" letter-spacing="18" fill="#93b489">DOMO</text>
 </svg>
