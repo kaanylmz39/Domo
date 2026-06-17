@@ -310,7 +310,8 @@ export default function Landing() {
             <p className="text-lg text-gray-500">See how Domo compares to spreadsheets and generic property tools.</p>
           </div>
           <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-            <table className="w-full text-sm">
+            <div className="overflow-x-auto">
+            <table className="w-full min-w-[720px] text-sm">
               <thead>
                 <tr className="border-b border-gray-100 bg-gray-50">
                   <th className="px-5 py-3 text-left font-medium text-gray-500">Feature</th>
@@ -330,6 +331,7 @@ export default function Landing() {
                 ))}
               </tbody>
             </table>
+            </div>
           </div>
         </div>
       </section>
