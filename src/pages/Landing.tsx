@@ -27,9 +27,9 @@ const stats = [
 
 /* ── How it works ───────────────────────────────────────── */
 const steps = [
-  { icon: Home, title: 'Add Your Properties', desc: 'Enter addresses, units, purchase details, and mortgage info. Import from spreadsheet or start fresh.' },
-  { icon: Users, title: 'Link Tenants & Contracts', desc: 'Add tenant info, contract terms, rent amounts, and deposit details per unit. Domo tracks everything.' },
-  { icon: PieChart, title: 'Track & Report', desc: 'Monitor rent payments, expenses, and property values. Generate reports for banks, taxes, and investors.' },
+  { icon: Home, title: 'Centralise the portfolio', desc: 'Create a structured property record with units, purchase data, mortgage information, notes, and ownership details.' },
+  { icon: Users, title: 'Connect operational data', desc: 'Link tenants, contracts, rent amounts, documents, expenses, developments, and valuations to the right property or unit.' },
+  { icon: PieChart, title: 'Manage and report', desc: 'Track rent, monitor results, review documents, and prepare clear reports for banking, tax, and portfolio decisions.' },
 ]
 
 /* ── Pricing ────────────────────────────────────────────── */
@@ -289,22 +289,30 @@ export default function Landing() {
       {/* ── How it works ────────────────────────────────── */}
       <section className="py-20 sm:py-24 px-4 sm:px-6 bg-gray-50">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-sm font-semibold text-brand-600 uppercase tracking-wide mb-3">How It Works</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Up and Running in 5 Minutes</h2>
-            <p className="text-lg text-gray-500">No complex setup. No consultants. Just add your properties and go.</p>
+          <div className="mb-12 sm:mb-14">
+            <p className="text-sm font-bold text-brand-600 uppercase tracking-[0.18em] mb-3">How it works</p>
+            <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-6 lg:gap-12 items-end">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-950 leading-tight">
+                From scattered information to a controlled property archive.
+              </h2>
+              <p className="text-base sm:text-lg text-gray-600 leading-8">
+                Domo is built around the property as the long-term source of truth. Every tenant, contract, document, expense, valuation, and report is connected back to that stable record.
+              </p>
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
             {steps.map((s, i) => (
-              <div key={s.title} className="relative bg-white rounded-xl border border-gray-200 p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-brand-600 rounded-xl flex items-center justify-center text-white font-bold text-sm">
-                    {i + 1}
+              <div key={s.title} className="relative bg-white rounded-2xl border border-gray-200 p-6 sm:p-7 shadow-sm">
+                <div className="flex items-center justify-between mb-8">
+                  <div className="w-12 h-12 bg-brand-600 rounded-xl flex items-center justify-center text-white font-extrabold text-sm">
+                    {String(i + 1).padStart(2, '0')}
                   </div>
-                  <s.icon size={20} className="text-gray-400" />
+                  <div className="w-12 h-12 bg-gray-50 border border-gray-100 rounded-xl flex items-center justify-center">
+                    <s.icon size={22} className="text-brand-600" />
+                  </div>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">{s.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{s.desc}</p>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-950 mb-3">{s.title}</h3>
+                <p className="text-sm sm:text-base text-gray-600 leading-7">{s.desc}</p>
               </div>
             ))}
           </div>
