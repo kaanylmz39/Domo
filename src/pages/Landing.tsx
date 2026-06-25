@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Building2, Shield, FileText, BarChart3, Receipt, Inbox,
@@ -141,7 +142,149 @@ const faqs = [
   { q: 'Can multiple people access my account?', a: 'Multi-user access is available on the Professional and Custom plans. Each user can have their own login with role-based permissions.' },
 ]
 
+type ExpectedOutput = typeof expectedOutputs[number]
+
+function StatusBadge({ children, tone }: { children: string; tone: 'green' | 'amber' | 'red' | 'gray' }) {
+  const tones = {
+    green: 'bg-emerald-50 text-emerald-700 border-emerald-100',
+    amber: 'bg-amber-50 text-amber-700 border-amber-100',
+    red: 'bg-red-50 text-red-700 border-red-100',
+    gray: 'bg-gray-50 text-gray-600 border-gray-200',
+  }
+
+  return (
+    <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-semibold ${tones[tone]}`}>
+      {children}
+    </span>
+  )
+}
+
+function OutputPreview({ output }: { output: ExpectedOutput }) {
+  if (output.title === 'Rent Status Overview') {
+    return (
+      <div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
+          {[
+            ['Expected rent', '€12.850'],
+            ['Received', '€10.950'],
+            ['Open amount', '€1.900'],
+            ['Paid units', '9 / 12'],
+          ].map(([label, value]) => (
+            <div key={label} className="rounded-xl border border-gray-200 bg-gray-50 p-4">
+              <div className="text-xs font-semibold uppercase tracking-wide text-gray-400">{label}</div>
+              <div className="mt-1 text-xl font-extrabold text-gray-950">{value}</div>
+            </div>
+          ))}
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[680px] text-sm">
+            <thead>
+              <tr className="border-b border-gray-100 text-left text-xs uppercase tracking-wide text-gray-400">
+                <th className="py-3 pr-4 font-semibold">Property / Unit</th>
+                <th className="py-3 pr-4 font-semibold">Tenant</th>
+                <th className="py-3 pr-4 font-semibold">Expected</th>
+                <th className="py-3 pr-4 font-semibold">Received</th>
+                <th className="py-3 pr-4 font-semibold">Status</th>
+                <th className="py-3 font-semibold">Payment date</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {[
+                ['Keizersgracht 274 / Unit A', 'Jan de Vries', '€1.450', '€1.450', 'Paid', '06 May 2026', 'green'],
+                ['Witte de Withstraat 58 / Studio 2', 'Sophie Bakker', '€1.050', '€650', 'Partial', '08 May 2026', 'amber'],
+                ['Stationsweg 23 / Apartment 3', 'Maria Santos', '€1.250', '€0', 'Overdue', '-', 'red'],
+              ].map(row => (
+                <tr key={row[0]} className="text-gray-700">
+                  <td className="py-3 pr-4 font-medium text-gray-950">{row[0]}</td>
+                  <td className="py-3 pr-4">{row[1]}</td>
+                  <td className="py-3 pr-4">{row[2]}</td>
+                  <td className="py-3 pr-4">{row[3]}</td>
+                  <td className="py-3 pr-4"><StatusBadge tone={row[6] as 'green' | 'amber' | 'red'}>{row[4]}</StatusBadge></td>
+                  <td className="py-3">{row[5]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    )
+  }
+
+  if (output.title === 'Missing Document Report') {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {[
+          ['Keizersgracht 274', '2 missing', ['Inspection report', '2026 invoice copy']],
+          ['Oudegracht 112', '1 missing', ['Updated WOZ decision']],
+          ['Stationsweg 23', '3 missing', ['Signed contract', 'Permit file', 'Roof repair invoice']],
+        ].map(([property, status, docs]) => (
+          <div key={property as string} className="rounded-xl border border-gray-200 bg-gray-50 p-5">
+            <div className="flex items-start justify-between gap-3">
+              <h4 className="font-bold text-gray-950">{property}</h4>
+              <StatusBadge tone="amber">{status as string}</StatusBadge>
+            </div>
+            <ul className="mt-4 space-y-2 text-sm text-gray-600">
+              {(docs as string[]).map(doc => (
+                <li key={doc} className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
+                  {doc}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  if (output.title === 'Maintenance Task Overview') {
+    return (
+      <div className="space-y-3">
+        {[
+          ['Roof repair quotation', 'Planned', 'Stationsweg 23', '18 Jun 2026', 'amber'],
+          ['Bathroom ventilation check', 'Open', 'Oudegracht 112 / Unit B', '22 Jun 2026', 'red'],
+          ['Kitchen cabinet replacement', 'Completed', 'Keizersgracht 274 / Unit A', '04 Jun 2026', 'green'],
+        ].map(row => (
+          <div key={row[0]} className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-3 rounded-xl border border-gray-200 bg-gray-50 p-4">
+            <div>
+              <div className="font-bold text-gray-950">{row[0]}</div>
+              <div className="mt-1 text-sm text-gray-500">{row[2]} · Due {row[3]}</div>
+            </div>
+            <div className="md:text-right"><StatusBadge tone={row[4] as 'green' | 'amber' | 'red'}>{row[1]}</StatusBadge></div>
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-5">
+      <div className="rounded-xl border border-gray-200 bg-gray-50 p-5">
+        <div className="text-xs font-semibold uppercase tracking-wide text-gray-400">Export summary</div>
+        <div className="mt-4 space-y-3 text-sm text-gray-700">
+          <div className="flex justify-between"><span>Portfolio income</span><strong className="text-gray-950">€154.200</strong></div>
+          <div className="flex justify-between"><span>Portfolio costs</span><strong className="text-gray-950">€62.590</strong></div>
+          <div className="flex justify-between"><span>Net result</span><strong className="text-emerald-700">€91.610</strong></div>
+          <div className="flex justify-between"><span>Documents included</span><strong className="text-gray-950">148</strong></div>
+        </div>
+      </div>
+      <div className="rounded-xl border border-gray-200 bg-gray-50 p-5">
+        <div className="text-xs font-semibold uppercase tracking-wide text-gray-400">Included sheets</div>
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+          {['Property overview', 'Rent ledger', 'Expense categories', 'Document index', 'Valuation overview', 'Open items'].map(item => (
+            <div key={item} className="rounded-lg border border-gray-200 bg-white px-3 py-2 font-medium text-gray-700">
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function Landing() {
+  const [selectedOutput, setSelectedOutput] = useState(expectedOutputs[0])
+
   return (
     <div className="min-h-screen bg-white">
       <MarketingNav />
@@ -311,7 +454,14 @@ export default function Landing() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
             {expectedOutputs.map(output => (
-              <div key={output.title} className="bg-white rounded-2xl border border-gray-200 p-6 sm:p-7 shadow-sm hover:border-brand-200 hover:shadow-md transition-all group">
+              <button
+                key={output.title}
+                type="button"
+                onClick={() => setSelectedOutput(output)}
+                className={`text-left bg-white rounded-2xl border p-6 sm:p-7 shadow-sm hover:border-brand-200 hover:shadow-md transition-all group ${
+                  selectedOutput.title === output.title ? 'border-brand-300 ring-4 ring-brand-100' : 'border-gray-200'
+                }`}
+              >
                 <div className="flex items-start gap-5">
                   <div className="shrink-0 w-12 h-12 bg-brand-50 border border-brand-100 rounded-xl flex items-center justify-center group-hover:bg-brand-100 transition">
                     <output.icon size={22} className="text-brand-600" />
@@ -321,8 +471,20 @@ export default function Landing() {
                     <p className="text-sm sm:text-base text-gray-600 leading-7">{output.desc}</p>
                   </div>
                 </div>
-              </div>
+              </button>
             ))}
+          </div>
+          <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-5 sm:p-7 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 border-b border-gray-100 pb-5 mb-5">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-600">Example output</p>
+                <h3 className="mt-2 text-xl sm:text-2xl font-extrabold text-gray-950">{selectedOutput.title}</h3>
+              </div>
+              <span className="inline-flex w-fit rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-semibold text-gray-500">
+                Mock client portfolio
+              </span>
+            </div>
+            <OutputPreview output={selectedOutput} />
           </div>
           <p className="mt-8 text-center text-sm sm:text-base text-gray-500 leading-7">
             These outputs help owners move from searching through folders and messages to working with structured portfolio information.
