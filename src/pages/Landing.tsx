@@ -3,6 +3,7 @@ import {
   Building2, Shield, FileText, BarChart3, Receipt, Inbox,
   ChevronRight, Check, ArrowRight, Star, Users, Globe,
   Zap, Lock, Clock, TrendingUp, Home, PieChart,
+  ClipboardCheck, FileSearch, Wrench, Download,
 } from 'lucide-react'
 import MarketingNav from '../components/layout/MarketingNav'
 import ProductTourVideo from '../components/marketing/ProductTourVideo'
@@ -15,6 +16,14 @@ const features = [
   { icon: Inbox, title: 'AI inbox workflow', desc: 'Review suggested document names, categories, dates, amounts, and property links before approving them.' },
   { icon: BarChart3, title: 'Reports', desc: 'Prepare clean views for bank reporting, tax preparation, unpaid rent, property performance, and valuations.' },
   { icon: Shield, title: 'Valuation history', desc: 'Track WOZ values, appraisals, bank valuations, and market estimates over time per property.' },
+]
+
+/* ── Expected Outputs ───────────────────────────────────── */
+const expectedOutputs = [
+  { icon: ClipboardCheck, title: 'Rent Status Overview', desc: 'See paid, unpaid and overdue rent per property or unit, including payment dates and open amounts.' },
+  { icon: FileSearch, title: 'Missing Document Report', desc: 'Identify missing contracts, invoices, inspection files, ownership documents and other key records.' },
+  { icon: Wrench, title: 'Maintenance Task Overview', desc: 'Track open, planned and completed maintenance tasks, linked directly to the relevant property or unit.' },
+  { icon: Download, title: 'Accountant & Bank Export', desc: 'Generate structured overviews of income, costs, documents and portfolio information for accountants, banks or advisors.' },
 ]
 
 /* ── Stats ──────────────────────────────────────────────── */
@@ -283,6 +292,41 @@ export default function Landing() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Expected Outputs ────────────────────────────── */}
+      <section className="py-20 sm:py-24 px-4 sm:px-6 bg-gray-50">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-12 sm:mb-14">
+            <p className="text-sm font-bold text-brand-600 uppercase tracking-[0.18em] mb-3">Expected Outputs</p>
+            <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-6 lg:gap-12 items-end">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-950 leading-tight">
+                Practical outputs for owners, accountants, banks and advisors.
+              </h2>
+              <p className="text-base sm:text-lg text-gray-600 leading-8">
+                DOMO does not only store property data. It turns scattered information into practical overviews that owners, accountants, banks and advisors can use.
+              </p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+            {expectedOutputs.map(output => (
+              <div key={output.title} className="bg-white rounded-2xl border border-gray-200 p-6 sm:p-7 shadow-sm hover:border-brand-200 hover:shadow-md transition-all group">
+                <div className="flex items-start gap-5">
+                  <div className="shrink-0 w-12 h-12 bg-brand-50 border border-brand-100 rounded-xl flex items-center justify-center group-hover:bg-brand-100 transition">
+                    <output.icon size={22} className="text-brand-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-950 mb-2">{output.title}</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-7">{output.desc}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-8 text-center text-sm sm:text-base text-gray-500 leading-7">
+            These outputs help owners move from searching through folders and messages to working with structured portfolio information.
+          </p>
         </div>
       </section>
 
