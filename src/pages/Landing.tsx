@@ -9,12 +9,12 @@ import ProductTourVideo from '../components/marketing/ProductTourVideo'
 
 /* ── Features ───────────────────────────────────────────── */
 const features = [
-  { icon: Building2, title: 'Portfolio Dashboard', desc: 'See every property, unit, tenant, and rent payment at a glance. Your entire portfolio on one screen.' },
-  { icon: Receipt, title: 'Rent Collection Tracking', desc: 'Monthly rent checklists generated from your contracts. Mark payments as paid, partial, or overdue in seconds.' },
-  { icon: FileText, title: 'Smart Document Storage', desc: 'Auto-rename and organize contracts, invoices, and tax documents per property. No more lost files.' },
-  { icon: Inbox, title: 'AI-Powered Inbox', desc: 'Upload any document — Domo reads it, categorizes it, and links it to the right property and unit.' },
-  { icon: BarChart3, title: 'Financial Reports', desc: 'One-click bank reports, tax summaries, and performance overviews. Ready for your accountant.' },
-  { icon: Shield, title: 'Valuation Tracking', desc: 'Track WOZ values, appraisals, and market estimates over time. Know what your portfolio is worth.' },
+  { icon: Building2, title: 'Property cockpit', desc: 'See properties, units, tenants, contracts, income, expenses, and documents in one structured overview.' },
+  { icon: Receipt, title: 'Rent control', desc: 'Monthly rent checklists are created from active contracts, so paid, partial, and unpaid rent are easy to follow.' },
+  { icon: FileText, title: 'Digital archive', desc: 'Store contracts, invoices, valuations, bank statements, photos, and tax documents under the right property.' },
+  { icon: Inbox, title: 'AI inbox workflow', desc: 'Review suggested document names, categories, dates, amounts, and property links before approving them.' },
+  { icon: BarChart3, title: 'Reports', desc: 'Prepare clean views for bank reporting, tax preparation, unpaid rent, property performance, and valuations.' },
+  { icon: Shield, title: 'Valuation history', desc: 'Track WOZ values, appraisals, bank valuations, and market estimates over time per property.' },
 ]
 
 /* ── Stats ──────────────────────────────────────────────── */
@@ -255,21 +255,31 @@ export default function Landing() {
       </section>
 
       {/* ── Features ────────────────────────────────────── */}
-      <section id="features" className="py-20 sm:py-24 px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-sm font-semibold text-brand-600 uppercase tracking-wide mb-3">Features</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Everything You Need.<br className="hidden sm:block" /> Nothing You Don't.</h2>
-            <p className="text-lg text-gray-500 max-w-2xl mx-auto">Domo replaces scattered spreadsheets, email folders, and paper archives with one clean system built for property owners.</p>
+      <section id="features" className="py-20 sm:py-24 px-4 sm:px-6 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-12 sm:mb-14">
+            <p className="text-sm font-bold text-brand-600 uppercase tracking-[0.18em] mb-3">Features</p>
+            <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-6 lg:gap-12 items-end">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-950 leading-tight">
+                Built for property owners who need control, not more spreadsheets.
+              </h2>
+              <p className="text-base sm:text-lg text-gray-600 leading-8">
+                Domo brings daily property management into one clean system: rent, documents, financials, contracts, valuations, and reports stay connected to the property they belong to.
+              </p>
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
             {features.map(f => (
-              <div key={f.title} className="bg-white rounded-xl border border-gray-200 p-6 hover:border-brand-200 hover:shadow-md transition-all group">
-                <div className="w-11 h-11 bg-brand-50 rounded-xl flex items-center justify-center mb-4 group-hover:bg-brand-100 transition">
-                  <f.icon size={20} className="text-brand-600" />
+              <div key={f.title} className="bg-gray-50 rounded-2xl border border-gray-200 p-6 sm:p-7 hover:border-brand-200 hover:shadow-md transition-all group">
+                <div className="flex items-start gap-5">
+                  <div className="shrink-0 w-12 h-12 bg-white border border-brand-100 rounded-xl flex items-center justify-center group-hover:bg-brand-50 transition">
+                    <f.icon size={22} className="text-brand-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-950 mb-2">{f.title}</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-7">{f.desc}</p>
+                  </div>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">{f.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>
